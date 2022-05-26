@@ -16,6 +16,18 @@ public class CustomerFormController {
     public JFXTextField txtProvince;
     public JFXComboBox<String> cmbCusTitle;
 
+    public void initialize(){
+
+    }
+
+    private void loadAllCustomers(){
+        tblCustomer.getItems().clear();
+
+        //from persistence layer
+
+
+    }
+
     public void CustomerAddOnAction(ActionEvent actionEvent){
 
     }
