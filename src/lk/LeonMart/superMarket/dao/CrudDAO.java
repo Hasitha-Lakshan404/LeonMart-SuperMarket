@@ -7,11 +7,12 @@
 
 package lk.LeonMart.superMarket.dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface CrudDAO<T,ID> extends SuperDAO{
 
-    ArrayList<T>getAll();
+    ArrayList<T>getAll() throws SQLException, ClassNotFoundException;
     boolean save(T dto);
     boolean update(T dto);
     T search(ID id);
