@@ -4,6 +4,9 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TableView;
+import lk.LeonMart.superMarket.dto.CustomerDTO;
+
+import java.util.ArrayList;
 
 public class CustomerFormController {
 
@@ -24,6 +27,7 @@ public class CustomerFormController {
         tblCustomer.getItems().clear();
 
         //from persistence layer
+        ArrayList<CustomerDTO> allCustomers =
 
 
     }
