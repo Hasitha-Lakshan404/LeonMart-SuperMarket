@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="968.0" prefWidth="1838.0" style="-fx-background-color: #e1e1e1;" stylesheets="@assests/style/MainTheam.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.LeonMart.superMarket.controller.CustomerFormController">
+   <children>
+      <TableView fx:id="tblCustomer" layoutX="65.0" layoutY="548.0" prefHeight="377.0" prefWidth="1741.0">
+        <columns>
+          <TableColumn prefWidth="161.0" text="Customer Id" />
+          <TableColumn prefWidth="128.0" text="Customer Title" />
+            <TableColumn prefWidth="292.0" text="Name" />
+            <TableColumn prefWidth="311.0" text="Address" />
+            <TableColumn prefWidth="235.0" text="City" />
+            <TableColumn prefWidth="302.0" text="Province" />
+            <TableColumn prefWidth="311.0" text="Postal code" />
+        </columns>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#menuEditOnAction" text="Update" />
+                  <MenuItem mnemonicParsing="false" onAction="#menuDeleteOnAction" text="Delete" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
+      </TableView>
+      <Label layoutX="65.0" layoutY="33.0" text="Customer Id ">
+         <font>
+            <Font name="Bodoni MT" size="19.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="57.0" layoutX="63.0" layoutY="64.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="261.0" />
+      <JFXTextField fx:id="txtCusId" layoutX="78.0" layoutY="76.0" prefHeight="31.0" prefWidth="231.0" promptText="C-01" />
+      <Label layoutX="68.0" layoutY="169.0" text="Customer Title ">
+         <font>
+            <Font name="Bodoni MT" size="19.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="57.0" layoutX="66.0" layoutY="200.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="261.0" />
+      <Label layoutX="70.0" layoutY="310.0" text="Name">
+         <font>
+            <Font name="Bodoni MT" size="19.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="57.0" layoutX="66.0" layoutY="341.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="261.0" />
+      <JFXTextField fx:id="txtCusName" layoutX="81.0" layoutY="353.0" prefHeight="31.0" prefWidth="231.0" promptText="Hasitha Lakshan" />
+      <Label layoutX="425.0" layoutY="167.0" text="Address">
+         <font>
+            <Font name="Bodoni MT" size="19.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="57.0" layoutX="421.0" layoutY="201.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="261.0" />
+      <JFXTextField fx:id="txtCusAddress" layoutX="436.0" layoutY="213.0" prefHeight="31.0" prefWidth="231.0" promptText="welmilla" />
+      <Label layoutX="420.0" layoutY="33.0" text="City">
+         <font>
+            <Font name="Bodoni MT" size="19.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="57.0" layoutX="416.0" layoutY="64.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="261.0" />
+      <JFXTextField fx:id="txtCusCity" layoutX="431.0" layoutY="76.0" prefHeight="31.0" prefWidth="231.0" promptText="Bandaragama" />
+      <Label layoutX="808.0" layoutY="33.0" text="Postal Code">
+         <font>
+            <Font name="Bodoni MT" size="19.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="57.0" layoutX="804.0" layoutY="64.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="261.0" />
+      <JFXTextField fx:id="txtPostalCode" layoutX="819.0" layoutY="76.0" prefHeight="31.0" prefWidth="231.0" promptText="Customer Id" />
+      <Separator layoutX="70.0" layoutY="149.0" prefHeight="6.0" prefWidth="1723.0" />
+      <Label layoutX="430.0" layoutY="309.0" text="Province">
+         <font>
+            <Font name="Bodoni MT" size="19.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="57.0" layoutX="426.0" layoutY="340.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="261.0" />
+      <JFXTextField fx:id="txtProvince" layoutX="441.0" layoutY="352.0" prefHeight="31.0" prefWidth="231.0" promptText="Kaluthara" />
+      <JFXComboBox fx:id="cmbCusTitle" layoutX="81.0" layoutY="213.0" prefHeight="31.0" prefWidth="231.0" promptText="MR" />
+      <JFXButton layoutX="803.0" layoutY="345.0" onAction="#CustomerAddOnAction" prefHeight="50.0" prefWidth="212.0" ripplerFill="#39c2ae" style="-fx-background-color: #52d0f7;" text="Add Customer" />
+      <JFXButton id="cusButtonText" layoutX="1102.0" layoutY="345.0" onAction="#CustomerClearOnAction" prefHeight="50.0" prefWidth="212.0" ripplerFill="#39c2ae" style="-fx-background-color: #f75e5e;" text="Clear" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="42.0" layoutX="387.0" layoutY="484.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="1139.0" />
+      <ImageView fitHeight="25.0" fitWidth="31.0" layoutX="400.0" layoutY="492.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assests/images/search.png" />
+         </image>
+      </ImageView>
+      <Line endX="100.0" layoutX="337.0" layoutY="495.0" startX="100.0" startY="21.0" />
+      <TextField layoutX="452.0" layoutY="490.0" prefHeight="31.0" prefWidth="1065.0" promptText="Search by  id, Name, Address, Province" />
+      <Separator layoutX="70.0" layoutY="282.0" prefHeight="6.0" prefWidth="1723.0" />
+      <Separator layoutX="70.0" layoutY="446.0" prefHeight="6.0" prefWidth="1723.0" />
+   </children>
+</AnchorPane>

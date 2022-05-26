@@ -1,0 +1,36 @@
+
+/*side bar for v box*/
+
+.button{
+    -fx-prompt-text-fill: #000000;
+    /*-fx-border-color: #b5dff5;*/
+    -fx-background-color: #FFFFFF;
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
+    -fx-text-fill: #000000;
+}
+
+.button:hover{
+    /*-fx-background-color:-fx-secondary;*/
+    /*-fx-text-fill: -fx-primary;*/
+}
+
+.menuItem{
+    /*-fx-background-color: #4b7bec;*/
+    -fx-border-color:  #edf6fa;
+    -fx-border-width: 5px 0px 5px 0px;
+}
+.menuItem:hover{
+    -fx-background-color: #a3dde3;
+    -fx-border-color: #40a1ad;
+    -fx-border-width: 0px 5px 0px 0px;
+}
+
+.rectangle{
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+
+}
+#cusButtonText{
+  -fx-text-fill: #f7d5e1;
+}
