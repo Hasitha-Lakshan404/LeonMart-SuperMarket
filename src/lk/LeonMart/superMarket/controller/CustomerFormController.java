@@ -32,6 +32,7 @@ public class CustomerFormController {
 
     public void initialize() throws SQLException, ClassNotFoundException {
 
+        generateId();
         cmbCusTitle.getItems().addAll("Mr", "Mis", "Ms");
 
         tblCustomer.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("cusId"));
@@ -103,7 +104,7 @@ public class CustomerFormController {
         }
     }
 
-    public void CustomerClearOnAction(ActionEvent actionEvent) {
+    public void CustomerClearOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         clearTexts();
 
     }
@@ -127,9 +128,10 @@ public class CustomerFormController {
         CustomerTM selectedItem=tblCustomer.getSelectionModel().getSelectedItem();
         customerBO.deleteCustomer(selectedItem.getCusId());
         tblCustomer.getItems().removeAll(selectedItem);
+        generateId();
     }
 
-    private void clearTexts() {
+    private void clearTexts() throws SQLException, ClassNotFoundException {
         txtCusId.clear();
         txtCusAddress.clear();
         txtCusName.clear();
@@ -138,6 +140,8 @@ public class CustomerFormController {
         txtProvince.clear();
         txtPostalCode.clear();
         cmbCusTitle.setValue(null);
+
+        generateId();
     }
 
     private void refreshTable() {
@@ -149,6 +153,10 @@ public class CustomerFormController {
                 txtProvince.getText(),
                 txtPostalCode.getText()));
         tblCustomer.refresh();
+    }
+
+    private void generateId() throws SQLException, ClassNotFoundException {
+        txtCusId.setText(customerBO.generateNewCustomerID());
     }
 
 }

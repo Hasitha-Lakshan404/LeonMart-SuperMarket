@@ -18,7 +18,7 @@ public interface CrudDAO<T,ID> extends SuperDAO{
     T search(ID id);
     boolean exist(ID id);
     boolean delete(ID id) throws SQLException, ClassNotFoundException;
-    String generateNewId();
+    String generateNewId() throws SQLException, ClassNotFoundException;
 
 
 }

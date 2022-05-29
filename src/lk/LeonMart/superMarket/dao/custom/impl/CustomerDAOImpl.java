@@ -77,8 +77,15 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public String generateNewId() {
-        return null;
+    public String generateNewId() throws SQLException, ClassNotFoundException {
+        ResultSet rst = CrudUtil.execute("SELECT CusID FROM Customer ORDER BY CusID DESC LIMIT 1;");
+        if (rst.next()) {
+            String id = rst.getString(1);
+            int newCustomerId = Integer.parseInt(id.replace("C00-", "")) + 1;
+            return String.format("C00-%03d", newCustomerId);
+        } else {
+            return "C00-001";
+        }
     }
 
 
