@@ -30,7 +30,6 @@ public class ItemFormController {
 
     public void ItemAddOnAction(ActionEvent actionEvent) {
 
-
     }
 
     public void ItemClearOnAction(ActionEvent actionEvent) {

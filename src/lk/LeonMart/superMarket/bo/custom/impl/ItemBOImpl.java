@@ -9,6 +9,7 @@ package lk.LeonMart.superMarket.bo.custom.impl;
 
 
 import lk.LeonMart.superMarket.bo.custom.ItemBO;
+import lk.LeonMart.superMarket.dao.CrudUtil;
 import lk.LeonMart.superMarket.dto.ItemDTO;
 
 import java.sql.SQLException;
@@ -23,7 +24,7 @@ public class ItemBOImpl implements ItemBO {
 
     @Override
     public boolean saveItem(ItemDTO dto) throws SQLException, ClassNotFoundException {
-        return false;
+
     }
 
     @Override
