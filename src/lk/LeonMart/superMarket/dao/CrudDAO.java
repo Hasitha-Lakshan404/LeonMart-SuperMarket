@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public interface CrudDAO<T,ID> extends SuperDAO{
 
     ArrayList<T>getAll() throws SQLException, ClassNotFoundException;
-    boolean save(T dto);
+    boolean save(T dto) throws SQLException, ClassNotFoundException;
     boolean update(T dto);
     T search(ID id);
     boolean exist(ID id);

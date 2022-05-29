@@ -28,6 +28,9 @@ public class CustomerFormController {
     CustomerBO customerBO = new CustomerBOImpl();
 
     public void initialize() throws SQLException, ClassNotFoundException {
+
+        cmbCusTitle.getItems().addAll("Mr","Mis","Ms");
+
         tblCustomer.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("cusId"));
         tblCustomer.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("cusTitle"));
         tblCustomer.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("cusName"));
@@ -55,8 +58,25 @@ public class CustomerFormController {
 
     }
 
-    public void CustomerAddOnAction(ActionEvent actionEvent){
-        // git Upload Error fixed test ?
+    public void CustomerAddOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+
+        customerBO.saveCustomer(new CustomerDTO(txtCusId.getText(),
+                cmbCusTitle.getValue(),
+                txtCusName.getText(),
+                txtCusAddress.getText(),
+                txtCusCity.getText(),
+                txtProvince.getText(),
+                txtPostalCode.getText()));
+
+        tblCustomer.getItems().add(new CustomerTM(txtCusId.getText(),
+                cmbCusTitle.getValue(),
+                txtCusName.getText(),
+                txtCusAddress.getText(),
+                txtCusCity.getText(),
+                txtProvince.getText(),
+                txtPostalCode.getText()));
+        tblCustomer.refresh();
+        clearTexts();
     }
 
     public void CustomerClearOnAction(ActionEvent actionEvent) {
@@ -66,5 +86,16 @@ public class CustomerFormController {
     }
 
     public void menuDeleteOnAction(ActionEvent actionEvent) {
+    }
+
+    private void clearTexts(){
+        txtCusId.clear();
+        txtCusAddress.clear();
+        txtCusName.clear();
+        txtCusAddress.clear();
+        txtCusCity.clear();
+        txtProvince.clear();
+        txtPostalCode.clear();
+        cmbCusTitle.getItems().clear();
     }
 }
