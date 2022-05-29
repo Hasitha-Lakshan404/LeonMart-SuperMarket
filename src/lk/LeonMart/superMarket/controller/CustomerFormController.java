@@ -42,7 +42,6 @@ public class CustomerFormController {
         tblCustomer.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("province"));
         tblCustomer.getColumns().get(6).setCellValueFactory(new PropertyValueFactory<>("postalCode"));
 
-
         loadAllCustomers();
     }
 
