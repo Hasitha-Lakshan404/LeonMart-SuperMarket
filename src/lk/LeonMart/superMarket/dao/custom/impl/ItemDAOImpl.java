@@ -8,29 +8,36 @@
 package lk.LeonMart.superMarket.dao.custom.impl;
 
 
+import lk.LeonMart.superMarket.dao.CrudUtil;
 import lk.LeonMart.superMarket.dao.custom.ItemDAO;
+import lk.LeonMart.superMarket.entity.Item;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ItemDAOImpl implements ItemDAO {
     @Override
-    public ArrayList<ItemDAO> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<Item> getAll() throws SQLException, ClassNotFoundException {
         return null;
     }
 
     @Override
-    public boolean save(ItemDAO dto) throws SQLException, ClassNotFoundException {
+    public boolean save(Item dto) throws SQLException, ClassNotFoundException {
+        return CrudUtil.execute("INSERT INTO item VALUES (?,?,?,?,?,?)",dto.getItemCode(),
+                dto.getDescription(),
+                dto.getPackSize(),
+                dto.getUnitPrice(),
+                dto.getQtyOnHand(),
+                dto.getDiscount());
+    }
+
+    @Override
+    public boolean update(Item dto) throws SQLException, ClassNotFoundException {
         return false;
     }
 
     @Override
-    public boolean update(ItemDAO dto) throws SQLException, ClassNotFoundException {
-        return false;
-    }
-
-    @Override
-    public ItemDAO search(String s) {
+    public Item search(String s) {
         return null;
     }
 

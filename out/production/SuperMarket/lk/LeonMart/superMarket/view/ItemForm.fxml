@@ -69,7 +69,7 @@
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="57.0" layoutX="797.0" layoutY="135.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="261.0" />
       <JFXTextField fx:id="txtQty" layoutX="812.0" layoutY="147.0" prefHeight="31.0" prefWidth="231.0" promptText="00" />
-      <JFXButton layoutX="928.0" layoutY="312.0" onAction="#ItemAddOnAction" prefHeight="48.0" prefWidth="241.0" ripplerFill="#39c2ae" style="-fx-background-color: #52d0f7;" text="Add Item" />
+      <JFXButton fx:id="btnAdd" layoutX="928.0" layoutY="312.0" onAction="#ItemAddOnAction" prefHeight="48.0" prefWidth="241.0" ripplerFill="#39c2ae" style="-fx-background-color: #52d0f7;" text="Add Item" />
       <JFXButton id="cusButtonText" layoutX="1245.0" layoutY="312.0" onAction="#ItemClearOnAction" prefHeight="48.0" prefWidth="241.0" ripplerFill="#39c2ae" style="-fx-background-color: #f75e5e;" text="Clear" />
       <JFXTextField fx:id="txtDescription" layoutX="86.0" layoutY="305.0" prefHeight="31.0" prefWidth="231.0" promptText="SunLight" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="383.0" layoutY="453.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="989.0" />

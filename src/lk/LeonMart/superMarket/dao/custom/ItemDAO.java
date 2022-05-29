@@ -8,7 +8,8 @@
 package lk.LeonMart.superMarket.dao.custom;
 
 import lk.LeonMart.superMarket.dao.CrudDAO;
+import lk.LeonMart.superMarket.entity.Item;
 
-public interface ItemDAO extends CrudDAO<ItemDAO,String> {
+public interface ItemDAO extends CrudDAO<Item,String> {
 
 }
