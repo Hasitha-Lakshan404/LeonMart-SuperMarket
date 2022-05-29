@@ -1,29 +1,31 @@
 /**
  * @author : Hasitha Lakshan
  * Project :SuperMarket
- * Date :5/26/2022
- * Time :2:19 PM
+ * Date :5/29/2022
+ * Time :10:48 PM
  */
 
-package lk.LeonMart.superMarket.dto;
+package lk.LeonMart.superMarket.view.tdm;
 
 
-public class itemDTO {
+public class ItemTM {
     private String itemCode;
     private String description;
     private String packSize;
     private double unitPrice;
     private int qtyOnHand;
+    private double discount;
 
-    public itemDTO() {
+    public ItemTM() {
     }
 
-    public itemDTO(String itemCode, String description, String packSize, double unitPrice, int qtyOnHand) {
+    public ItemTM(String itemCode, String description, String packSize, double unitPrice, int qtyOnHand, double discount) {
         this.itemCode = itemCode;
         this.description = description;
         this.packSize = packSize;
         this.unitPrice = unitPrice;
         this.qtyOnHand = qtyOnHand;
+        this.discount = discount;
     }
 
     public String getItemCode() {
@@ -66,14 +68,23 @@ public class itemDTO {
         this.qtyOnHand = qtyOnHand;
     }
 
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
     @Override
     public String toString() {
-        return "itemDTO{" +
+        return "ItemTM{" +
                 "itemCode='" + itemCode + '\'' +
                 ", description='" + description + '\'' +
                 ", packSize='" + packSize + '\'' +
                 ", unitPrice=" + unitPrice +
                 ", qtyOnHand=" + qtyOnHand +
+                ", discount=" + discount +
                 '}';
     }
 }
