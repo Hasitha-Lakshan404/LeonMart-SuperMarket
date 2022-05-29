@@ -51,7 +51,13 @@ public class CustomerBOImpl implements CustomerBO {
 
     @Override
     public boolean updateCustomer(CustomerDTO dto) throws SQLException, ClassNotFoundException {
-        return false;
+        return customerDAO.update(new Customer(dto.getCusId(),
+                dto.getCusTitle(),
+                dto.getCusName(),
+                dto.getCusAddress(),
+                dto.getCity(),
+                dto.getProvince(),
+                dto.getPostalCode()) );
     }
 
     @Override
@@ -61,7 +67,7 @@ public class CustomerBOImpl implements CustomerBO {
 
     @Override
     public boolean deleteCustomer(String id) throws SQLException, ClassNotFoundException {
-        return false;
+        return customerDAO.delete(id);
     }
 
     @Override

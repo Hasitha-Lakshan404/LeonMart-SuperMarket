@@ -50,8 +50,15 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public boolean update(Customer dto) {
-        return false;
+    public boolean update(Customer dto) throws SQLException, ClassNotFoundException {
+        return CrudUtil.execute("UPDATE Customer set CusTitle=?,CusName=?,CusAddress=?,City=?,Province=?,PostalCode=? WHERE CusID=?",
+                dto.getCusTitle(),
+                dto.getCusName(),
+                dto.getCusAddress(),
+                dto.getCity(),
+                dto.getProvince(),
+                dto.getPostalCode(),
+                dto.getCusId());
     }
 
     @Override
@@ -65,12 +72,14 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public boolean delete(String s) {
-        return false;
+    public boolean delete(String s) throws SQLException, ClassNotFoundException {
+        return CrudUtil.execute("DELETE  FROM Customer WHERE CusId=?",s);
     }
 
     @Override
     public String generateNewId() {
         return null;
     }
+
+
 }
