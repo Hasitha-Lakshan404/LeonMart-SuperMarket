@@ -74,7 +74,10 @@ public class ItemFormController {
 
 
             btnAdd.setText("Add Item");
+            loadAllItems();
+            clearText();
         }else {
+
             itemBO.saveItem(new ItemDTO(txtItemId.getText(),
                     txtDescription.getText(),
                     txtPackSize.getText(),
@@ -82,10 +85,21 @@ public class ItemFormController {
                     Integer.parseInt(txtQty.getText()),
                     Double.parseDouble("0"))
             );
+            tblItem.getItems().add(new ItemTM(txtItemId.getText(),
+                    txtDescription.getText(),
+                    txtPackSize.getText(),
+                    Double.parseDouble(txtUnitPrice.getText()),
+                    Integer.parseInt(txtQty.getText()),
+                    Double.parseDouble("0")));
+            tblItem.refresh();
+
+            clearText();
         }
     }
 
     public void ItemClearOnAction(ActionEvent actionEvent) {
+        clearText();
+
     }
 
     private void loadAllItems() throws SQLException, ClassNotFoundException {
@@ -103,6 +117,14 @@ public class ItemFormController {
                     itm.getQtyOnHand(),
                     itm.getDiscount()));
         }
-
     }
+
+    private void clearText(){
+        txtItemId.clear();
+        txtDescription.clear();
+        txtPackSize.clear();
+        txtUnitPrice.clear();
+        txtQty.clear();
+    }
+
 }

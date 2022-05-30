@@ -71,18 +71,12 @@ public class CustomerFormController {
                     txtCusCity.getText(),
                     txtProvince.getText(),
                     txtPostalCode.getText()));
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Customer Updated Successfully ..!");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Customer Updated Successfully ..!");
             alert.show();
 
             btnAdd.setText("Save Customer");
 
-            tblCustomer.getItems().setAll(new CustomerTM(txtCusId.getText(),
-                    cmbCusTitle.getValue(),
-                    txtCusName.getText(),
-                    txtCusAddress.getText(),
-                    txtCusCity.getText(),
-                    txtProvince.getText(),
-                    txtPostalCode.getText()));
+
 
             loadAllCustomers();
 
