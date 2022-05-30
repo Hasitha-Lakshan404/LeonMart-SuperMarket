@@ -12,7 +12,9 @@ import lk.LeonMart.superMarket.bo.custom.ItemBO;
 import lk.LeonMart.superMarket.dao.CrudUtil;
 import lk.LeonMart.superMarket.dao.custom.ItemDAO;
 import lk.LeonMart.superMarket.dao.custom.impl.ItemDAOImpl;
+import lk.LeonMart.superMarket.dto.CustomerDTO;
 import lk.LeonMart.superMarket.dto.ItemDTO;
+import lk.LeonMart.superMarket.entity.Customer;
 import lk.LeonMart.superMarket.entity.Item;
 
 import java.sql.SQLException;
@@ -24,7 +26,20 @@ public class ItemBOImpl implements ItemBO {
 
     @Override
     public ArrayList<ItemDTO> getAllItems() throws SQLException, ClassNotFoundException {
-        return null;
+        ArrayList<Item> all = itemDAO.getAll();
+
+        ArrayList<ItemDTO> allItem= new ArrayList<>();
+
+        for (Item item : all) {
+
+            allItem.add(new ItemDTO(item.getItemCode(),
+                    item.getDescription(),
+                    item.getPackSize(),
+                    item.getUnitPrice(),
+                    item.getQtyOnHand(),
+                    item.getDiscount()));
+        }
+        return allItem;
     }
 
     @Override
@@ -39,7 +54,7 @@ public class ItemBOImpl implements ItemBO {
 
     @Override
     public boolean updateItem(ItemDTO dto) throws SQLException, ClassNotFoundException {
-        return false;
+        return itemDAO.update(new Item(dto.getItemCode(),dto.getDescription(),dto.getPackSize(),dto.getUnitPrice(),dto.getQtyOnHand(),dto.getDiscount()));
     }
 
     @Override

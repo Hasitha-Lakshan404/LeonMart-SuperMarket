@@ -20,6 +20,7 @@ public class ItemDTO {
     public ItemDTO() {
     }
 
+
     public ItemDTO(String itemCode, String description, String packSize, double unitPrice, int qtyOnHand, double discount) {
         this.itemCode = itemCode;
         this.description = description;

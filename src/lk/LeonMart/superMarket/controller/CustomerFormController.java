@@ -119,6 +119,7 @@ public class CustomerFormController {
         txtCusCity.setText(selectItem.getCity());
         txtProvince.setText(selectItem.getProvince());
         txtPostalCode.setText(selectItem.getPostalCode());
+        txtCusId.setEditable(false);
 
         btnAdd.setText("Update Now");
 
