@@ -49,7 +49,6 @@ public class CustomerFormController {
     private void loadAllCustomers() throws SQLException, ClassNotFoundException {
         tblCustomer.getItems().clear();
 
-        //from persistence layer
         ArrayList<CustomerDTO> allCustomers = customerBO.getAllCustomers();
 
         for (CustomerDTO cus : allCustomers) {

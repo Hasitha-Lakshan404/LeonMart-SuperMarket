@@ -40,7 +40,7 @@ public class ItemFormController {
         tblItem.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("discount"));
 
         loadAllItems();
-
+        generateNewId();
 
     }
 
@@ -59,7 +59,13 @@ public class ItemFormController {
         btnAdd.setText("Update Now");
     }
 
-    public void menuDeleteOnAction(ActionEvent actionEvent) {
+    public void menuDeleteOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        ItemTM selectedItem=tblItem.getSelectionModel().getSelectedItem();
+
+        itemBO.deleteItem(selectedItem.getItemCode());
+        tblItem.getItems().removeAll(selectedItem);
+        tblItem.refresh();
+        generateNewId();
 
     }
 
@@ -97,7 +103,7 @@ public class ItemFormController {
         }
     }
 
-    public void ItemClearOnAction(ActionEvent actionEvent) {
+    public void ItemClearOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         clearText();
 
     }
@@ -106,7 +112,6 @@ public class ItemFormController {
 
         tblItem.getItems().clear();
 
-        //from persistence layer
         ArrayList<ItemDTO> allItem = itemBO.getAllItems();
 
         for (ItemDTO itm : allItem) {
@@ -119,12 +124,16 @@ public class ItemFormController {
         }
     }
 
-    private void clearText(){
+    private void clearText() throws SQLException, ClassNotFoundException {
         txtItemId.clear();
         txtDescription.clear();
         txtPackSize.clear();
         txtUnitPrice.clear();
         txtQty.clear();
+        generateNewId();
+    }
+    private void generateNewId() throws SQLException, ClassNotFoundException {
+        txtItemId.setText(itemBO.generateNewItemID());
     }
 
 }

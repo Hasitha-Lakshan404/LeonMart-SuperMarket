@@ -64,11 +64,18 @@ public class ItemDAOImpl implements ItemDAO {
 
     @Override
     public boolean delete(String s) throws SQLException, ClassNotFoundException {
-        return false;
+        return CrudUtil.execute("DELETE FROM item WHERE ItemCode=?",s);
     }
 
     @Override
     public String generateNewId() throws SQLException, ClassNotFoundException {
-        return null;
+        ResultSet rst = CrudUtil.execute("SELECT ItemCode FROM item ORDER BY ItemCode DESC LIMIT 1;");
+        if (rst.next()) {
+            String id = rst.getString(1);
+            int newCustomerId = Integer.parseInt(id.replace("I00-", "")) + 1;
+            return String.format("I00-%03d", newCustomerId);
+        } else {
+            return "I00-001";
+        }
     }
 }

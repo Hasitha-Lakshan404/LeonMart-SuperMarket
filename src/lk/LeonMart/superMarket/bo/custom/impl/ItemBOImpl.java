@@ -64,11 +64,11 @@ public class ItemBOImpl implements ItemBO {
 
     @Override
     public boolean deleteItem(String id) throws SQLException, ClassNotFoundException {
-        return false;
+        return itemDAO.delete(id);
     }
 
     @Override
     public String generateNewItemID() throws SQLException, ClassNotFoundException {
-        return null;
+        return itemDAO.generateNewId();
     }
 }
