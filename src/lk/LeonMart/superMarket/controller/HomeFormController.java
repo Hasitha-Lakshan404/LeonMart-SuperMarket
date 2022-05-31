@@ -23,6 +23,9 @@ public class HomeFormController {
     public JFXButton btnOrder;
     public JFXButton btnReport;
     public Label lblHomeTitleShow;
+
+
+
     String userNameShow;
 
 
@@ -30,6 +33,9 @@ public class HomeFormController {
         apnSideNamePane.setVisible(false);
 
         setUI("DashboardForm");
+
+
+
 
     }
 
