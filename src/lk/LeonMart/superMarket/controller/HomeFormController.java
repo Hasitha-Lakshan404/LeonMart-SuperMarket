@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -21,6 +22,7 @@ public class HomeFormController {
     public JFXButton btnItem;
     public JFXButton btnOrder;
     public JFXButton btnReport;
+    public Label lblHomeTitleShow;
     String userNameShow;
 
 
@@ -42,6 +44,7 @@ public class HomeFormController {
     public void setUI(String URI) throws IOException {
         apnMainPane.getChildren().clear();
         apnMainPane.getChildren().add(FXMLLoader.load(getClass().getResource("/lk/LeonMart/superMarket/view/" + URI + ".fxml")));
+
     }
 
     public void buttonsClickOnAction(MouseEvent mouseEvent) throws IOException {
@@ -52,15 +55,23 @@ public class HomeFormController {
 
             if (btn.getId().equals("customerButton")) {
                 setUI("CustomerForm");
+                lblHomeTitleShow.setText("Customer");
+
             } else if (btn.getId().equals("ItemButton")) {
                 this.setUI("ItemForm");
+                lblHomeTitleShow.setText("Item");
 
             } else if (btn.getId().equals("OrderButton")) {
+                setUI("OrderForm");
+                lblHomeTitleShow.setText("Order");
 
             } else if (btn.getId().equals("ReportButton")) {
 
             } else if (btn.getId().equals("SettingsButton")) {
 
+            }else if (btn.getId().equals("dashBoardButton")) {
+                setUI("DashboardForm");
+                lblHomeTitleShow.setText("Dashboard");
             }
 
         }

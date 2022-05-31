@@ -106,7 +106,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </VBox>
-            <JFXButton id="SettingsButton" fx:id="btnSettings1" layoutY="28.0" onMouseClicked="#buttonsClickOnAction" prefHeight="73.0" prefWidth="215.0" styleClass="menuItem" text="Dashboard">
+            <JFXButton id="dashBoardButton" fx:id="btnDashboard" layoutY="28.0" onMouseClicked="#buttonsClickOnAction" prefHeight="73.0" prefWidth="215.0" styleClass="menuItem" text="Dashboard">
                <font>
                   <Font name="Bell MT" size="18.0" />
                </font>
@@ -126,7 +126,7 @@
             <Image url="@assests/images/userud.png" />
          </image>
       </ImageView>
-      <Label layoutX="63.0" layoutY="13.0" prefHeight="27.0" prefWidth="420.0" text="Dashboard">
+      <Label fx:id="lblHomeTitleShow" layoutX="63.0" layoutY="13.0" prefHeight="27.0" prefWidth="420.0" text="Dashboard">
          <font>
             <Font name="Bodoni MT Bold" size="32.0" />
          </font>
