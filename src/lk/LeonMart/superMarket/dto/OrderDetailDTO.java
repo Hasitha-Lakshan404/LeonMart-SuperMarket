@@ -12,15 +12,17 @@ public class OrderDetailDTO {
     private String OrderId;
     private String ItemCode;
     private int qty;
+    private double unitPrice;
     private double discount;
 
     public OrderDetailDTO() {
     }
 
-    public OrderDetailDTO(String orderId, String itemCode, int qty, double discount) {
+    public OrderDetailDTO(String orderId, String itemCode, int qty, double unitPrice, double discount) {
         OrderId = orderId;
         ItemCode = itemCode;
         this.qty = qty;
+        this.unitPrice = unitPrice;
         this.discount = discount;
     }
 
@@ -48,6 +50,14 @@ public class OrderDetailDTO {
         this.qty = qty;
     }
 
+    public double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
     public double getDiscount() {
         return discount;
     }
@@ -62,6 +72,7 @@ public class OrderDetailDTO {
                 "OrderId='" + OrderId + '\'' +
                 ", ItemCode='" + ItemCode + '\'' +
                 ", qty=" + qty +
+                ", unitPrice=" + unitPrice +
                 ", discount=" + discount +
                 '}';
     }

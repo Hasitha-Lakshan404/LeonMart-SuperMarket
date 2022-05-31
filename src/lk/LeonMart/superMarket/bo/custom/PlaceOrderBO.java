@@ -15,11 +15,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface PlaceOrderBO {
-    boolean purchaseOrder(OrderDTO dto) ;
+    boolean purchaseOrder(OrderDTO dto) throws SQLException, ClassNotFoundException;
 
-    CustomerDTO searchCustomer(String id) ;
+    CustomerDTO searchCustomer(String id) throws SQLException, ClassNotFoundException;
 
-    ItemDTO searchItem(String code) ;
+    ItemDTO searchItem(String code) throws SQLException, ClassNotFoundException;
 
     boolean checkItemIsAvailable(String code) ;
 
@@ -27,7 +27,7 @@ public interface PlaceOrderBO {
 
     String generateNewOrderID() ;
 
-    ArrayList<CustomerDTO> getAllCustomers() ;
+    ArrayList<CustomerDTO> getAllCustomers() throws SQLException, ClassNotFoundException;
 
-    ArrayList<ItemDTO> getAllItems();
+    ArrayList<ItemDTO> getAllItems() throws SQLException, ClassNotFoundException;
 }

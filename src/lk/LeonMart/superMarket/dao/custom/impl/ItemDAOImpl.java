@@ -10,6 +10,7 @@ package lk.LeonMart.superMarket.dao.custom.impl;
 
 import lk.LeonMart.superMarket.dao.CrudUtil;
 import lk.LeonMart.superMarket.dao.custom.ItemDAO;
+import lk.LeonMart.superMarket.entity.Customer;
 import lk.LeonMart.superMarket.entity.Item;
 
 import java.sql.ResultSet;
@@ -53,7 +54,17 @@ public class ItemDAOImpl implements ItemDAO {
     }
 
     @Override
-    public Item search(String s) {
+    public Item search(String s) throws SQLException, ClassNotFoundException {
+        ResultSet rst = CrudUtil.execute("SELECT * FROM item WHERE ItemCode=?", s);
+        if (rst.next()) {
+            return new Item(rst.getString(1),
+                    rst.getString(2),
+                    rst.getString(3),
+                    rst.getDouble(4),
+                    rst.getInt(5),
+                    rst.getDouble(6)
+            );
+        }
         return null;
     }
 

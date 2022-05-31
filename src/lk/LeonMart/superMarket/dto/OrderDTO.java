@@ -9,12 +9,14 @@ package lk.LeonMart.superMarket.dto;
 
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class OrderDTO {
     private String OrderId;
     private LocalDate orderDate;
     private String customerId;
 
+    List<OrderDetailDTO> orderDetails;
 
     public OrderDTO() {
     }
@@ -23,6 +25,14 @@ public class OrderDTO {
         OrderId = orderId;
         this.orderDate = orderDate;
         this.customerId = customerId;
+    }
+
+    public List<OrderDetailDTO> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(List<OrderDetailDTO> orderDetails) {
+        this.orderDetails = orderDetails;
     }
 
     public String getOrderId() {
