@@ -34,6 +34,11 @@ public class OrderFormController {
     public Label lblDate;
 
 
+    public void initialize(){
+
+    }
+
+
     public void menuDeleteOnAction(ActionEvent actionEvent) {
     }
 
