@@ -8,6 +8,7 @@
 package lk.LeonMart.superMarket.dao.custom.impl;
 
 
+import lk.LeonMart.superMarket.dao.CrudUtil;
 import lk.LeonMart.superMarket.dao.custom.OrderDAO;
 import lk.LeonMart.superMarket.entity.Order;
 
@@ -21,8 +22,9 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public boolean save(Order dto) throws SQLException, ClassNotFoundException {
-        return false;
+    public boolean save(Order entity) throws SQLException, ClassNotFoundException {
+        return CrudUtil.execute("INSERT INTO `Order`  VALUES (?,?,?)", entity.getOrderId(), entity.getOrderDate(), entity.getCustomerId());
+
     }
 
     @Override

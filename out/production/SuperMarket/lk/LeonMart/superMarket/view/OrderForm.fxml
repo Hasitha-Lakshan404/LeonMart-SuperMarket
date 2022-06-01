@@ -110,15 +110,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" layoutX="1534.0" layoutY="879.0" onMouseClicked="#placeOrderOnAction" prefHeight="50.0" prefWidth="212.0" ripplerFill="#242e23" style="-fx-background-color: 154895;">
-         <graphic>
-            <ImageView fitHeight="48.0" fitWidth="219.0" onMouseClicked="#placeOrderOnAction" pickOnBounds="true">
-               <image>
-                  <Image url="@assests/images/oenow.gif" />
-               </image>
-            </ImageView>
-         </graphic>
-      </JFXButton>
+      <JFXButton buttonType="RAISED" contentDisplay="BOTTOM" layoutX="1534.0" layoutY="879.0" onAction="#placeOrderOnAction" prefHeight="50.0" prefWidth="212.0" ripplerFill="#242e23" style="-fx-background-color: #158475;" text="Place Order" textFill="WHITE" />
       <Label layoutX="72.0" layoutY="896.0" text="Total : ">
          <font>
             <Font name="Bodoni MT Bold" size="33.0" />
@@ -141,7 +133,7 @@
             <Font name="Bodoni MT Bold" size="33.0" />
          </font>
       </Label>
-      <Label fx:id="lblOrderId" layoutX="1612.0" layoutY="28.0" prefHeight="42.0" prefWidth="212.0" text="00.00">
+      <Label fx:id="lblOrderId" layoutX="1612.0" layoutY="28.0" prefHeight="42.0" prefWidth="212.0" text="O00-001">
          <font>
             <Font name="Bodoni MT Bold" size="33.0" />
          </font>

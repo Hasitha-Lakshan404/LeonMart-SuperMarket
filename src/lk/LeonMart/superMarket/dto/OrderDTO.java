@@ -27,6 +27,13 @@ public class OrderDTO {
         this.customerId = customerId;
     }
 
+    public OrderDTO(String orderId, LocalDate orderDate, String customerId, List<OrderDetailDTO> orderDetails) {
+        this.OrderId = orderId;
+        this.orderDate = orderDate;
+        this.customerId = customerId;
+        this.orderDetails = orderDetails;
+    }
+
     public List<OrderDetailDTO> getOrderDetails() {
         return orderDetails;
     }

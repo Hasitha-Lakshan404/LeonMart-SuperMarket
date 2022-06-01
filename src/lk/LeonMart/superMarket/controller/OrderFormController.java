@@ -11,6 +11,8 @@ package lk.LeonMart.superMarket.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -21,11 +23,14 @@ import lk.LeonMart.superMarket.bo.custom.PlaceOrderBO;
 import lk.LeonMart.superMarket.bo.custom.impl.PlaceOrderBOImpl;
 import lk.LeonMart.superMarket.dto.CustomerDTO;
 import lk.LeonMart.superMarket.dto.ItemDTO;
+import lk.LeonMart.superMarket.dto.OrderDTO;
+import lk.LeonMart.superMarket.dto.OrderDetailDTO;
 import lk.LeonMart.superMarket.view.tdm.OrderDetailsTM;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class OrderFormController {
 
@@ -43,9 +48,9 @@ public class OrderFormController {
     public JFXTextField txtQty;
     public Label lblOrderId;
     public Label lblDate;
-
+    PlaceOrderBO placeOrderBO = new PlaceOrderBOImpl();
+    ObservableList<OrderDetailsTM> obOrderDetailTmList = FXCollections.observableArrayList();
     private String orderId;
-    PlaceOrderBO placeOrderBO=new PlaceOrderBOImpl();
 
     public void initialize() {
 
@@ -58,7 +63,7 @@ public class OrderFormController {
 
 
         orderId = generateNewOrderId();
-        lblOrderId.setText("Order ID: " + orderId);
+        lblOrderId.setText(orderId);
         lblDate.setText(LocalDate.now().toString());
 //        btnPlaceOrder.setDisable(true);
         txtCusName.setFocusTraversable(false);
@@ -72,7 +77,7 @@ public class OrderFormController {
         txtQtyOnHand.setFocusTraversable(false);
         txtQtyOnHand.setEditable(false);
 //        txtQty.setOnAction(event -> btnSave.fire());
-        txtQty.setEditable(false);
+//        txtQty.setEditable(false);
 //        btnSave.setDisable(true);
 
         getItemCode();
@@ -81,7 +86,7 @@ public class OrderFormController {
 
         cmbCusId.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 
-            if(newValue != null){
+            if (newValue != null) {
                 try {
                     CustomerDTO customerDTO = placeOrderBO.searchCustomer(newValue + "");
                     txtAddress.setText(customerDTO.getCusAddress());
@@ -99,13 +104,18 @@ public class OrderFormController {
 
         cmbItemCode.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 
-            if(newValue != null){
+            if (newValue != null) {
                 try {
                     ItemDTO itemDTO = placeOrderBO.searchItem(newValue + "");
                     txtItemDescription.setText(itemDTO.getDescription());
-                    txtQty.setText(String.valueOf(itemDTO.getQtyOnHand()));
+                    txtQtyOnHand.setText(String.valueOf(itemDTO.getQtyOnHand()));
                     txtUnitPrice.setText(String.valueOf(itemDTO.getUnitPrice()));
                     txtDiscount.setText(String.valueOf(itemDTO.getDiscount()));
+
+                    if (obOrderDetailTmList != null) {
+                        //for - qty
+                    }
+
 
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -118,7 +128,7 @@ public class OrderFormController {
         });
     }
 
-    private void getCustomerId( ){
+    private void getCustomerId() {
         try {
             ArrayList<CustomerDTO> all = placeOrderBO.getAllCustomers();
             for (CustomerDTO customerDTO : all) {
@@ -133,8 +143,7 @@ public class OrderFormController {
     }
 
 
-
-    private void getItemCode( ){
+    private void getItemCode() {
         try {
             /*Get all items*/
             ArrayList<ItemDTO> all = placeOrderBO.getAllItems();
@@ -148,24 +157,145 @@ public class OrderFormController {
             e.printStackTrace();
         }
     }
-    private String  generateNewOrderId() {
-        return "null";
+
+    private String generateNewOrderId() {
+        return "O00-001";
     }
 
 
     public void menuDeleteOnAction(ActionEvent actionEvent) {
-        OrderDetailsTM selectedText=tblOrderCart.getSelectionModel().getSelectedItem();
+        OrderDetailsTM selectedText = tblOrderCart.getSelectionModel().getSelectedItem();
 
         tblOrderCart.getItems().removeAll(selectedText);
     }
 
     public void CustomerAddToCartOnAction(ActionEvent actionEvent) {
 
+        if (!txtQty.getText().matches("\\d+") || Integer.parseInt(txtQty.getText()) <= 0 ||
+                Integer.parseInt(txtQty.getText()) > Integer.parseInt(txtQtyOnHand.getText())) {
+            new Alert(Alert.AlertType.ERROR, "Invalid qty").show();
+            txtQty.requestFocus();
+            txtQty.selectAll();
+            return;
+
+        }
+
+        String itemCode = cmbItemCode.getSelectionModel().getSelectedItem();
+        String description = txtItemDescription.getText();
+        double unitPrice = Double.parseDouble(txtUnitPrice.getText());
+        int qty = Integer.parseInt(txtQty.getText());
+        double total = unitPrice * qty;
+
+//        BigDecimal unitPrice = new BigDecimal(txtUnitPrice.getText()).setScale(2);
+//        BigDecimal total = unitPrice.multiply(new BigDecimal(qty)).setScale(2);
+
+
+        if (isExist(itemCode)) {
+            for (OrderDetailsTM orderDetailsTM : obOrderDetailTmList) {
+                if (orderDetailsTM.getItemCode().equals(cmbItemCode.getValue())) {
+                    orderDetailsTM.setQty(orderDetailsTM.getQty() + qty);
+                    orderDetailsTM.setTotal(orderDetailsTM.getTotal() + total);
+
+                }
+            }
+            tblOrderCart.refresh();
+        } else {
+
+            //Add data to the Observable List
+
+            OrderDetailsTM orderDetail = new OrderDetailsTM(cmbItemCode.getValue(),
+                    txtItemDescription.getText(),
+                    qty,
+                    unitPrice,
+                    Double.parseDouble(txtDiscount.getText()),
+                    total);
+            //Added OrderDetail To the Observable list
+            obOrderDetailTmList.add(orderDetail);
+
+            //Added Observable list to the table
+            tblOrderCart.setItems(obOrderDetailTmList);
+
+        }
+        lblTotal.setText(String.valueOf(getAllTotalCost()));
+
+       /* boolean exists = tblOrderCart.getItems().stream().anyMatch(detail -> detail.getCode().equals(itemCode));
+
+        if (exists) {
+            OrderDetailTM orderDetailTM = tblOrderDetails.getItems().stream().filter(detail -> detail.getCode().equals(itemCode)).findFirst().get();
+
+            if (btnSave.getText().equalsIgnoreCase("Update")) {
+                orderDetailTM.setQty(qty);
+                orderDetailTM.setTotal(total);
+                tblOrderDetails.getSelectionModel().clearSelection();
+            } else {
+                orderDetailTM.setQty(orderDetailTM.getQty() + qty);
+                total = new BigDecimal(orderDetailTM.getQty()).multiply(unitPrice).setScale(2);
+                orderDetailTM.setTotal(total);
+            }
+            tblOrderDetails.refresh();
+        } else {
+            tblOrderDetails.getItems().add(new OrderDetailTM(itemCode, description, qty, unitPrice, total));
+        }
+        cmbItemCode.getSelectionModel().clearSelection();
+        cmbItemCode.requestFocus();
+        calculateTotal();
+        enableOrDisablePlaceOrderButton();*/
+
+
+    }
+
+    private double getAllTotalCost() {
+        double tCost = 0;
+        for (OrderDetailsTM orderDetailsTM : obOrderDetailTmList) {
+            tCost += orderDetailsTM.getTotal();
+        }
+        return tCost;
+
+    }
+
+    private boolean isExist(String code) {
+        for (OrderDetailsTM orderDetailsTM : obOrderDetailTmList) {
+            if (orderDetailsTM.getItemCode().equals(code)) {
+                return true;
+            }
+        }
+        return false;
+
     }
 
     public void CustomerClearOnAction(ActionEvent actionEvent) {
+
     }
 
-    public void placeOrderOnAction(MouseEvent mouseEvent) {
+    public void placeOrderOnAction(ActionEvent mouseEvent) {
+
+        List<OrderDetailDTO> orderList =new ArrayList<>();
+
+        for (OrderDetailsTM orderDetailsTM : obOrderDetailTmList) {
+            orderList.add(new OrderDetailDTO(lblOrderId.getText(),orderDetailsTM.getItemCode(),
+                    orderDetailsTM.getQty(),orderDetailsTM.getUnitPrice(),orderDetailsTM.getDiscount()));
+        }
+
+
+        boolean b = saveOrder(orderId, LocalDate.now(), cmbCusId.getValue(), orderList);
+        if(b){
+           new Alert(Alert.AlertType.INFORMATION,"Order Placed Successfully").show();
+        }else{
+            new Alert(Alert.AlertType.WARNING,"Order Placed UN-Successful").show();
+
+        }
+
+    }
+
+
+    private boolean saveOrder(String orderId, LocalDate orderDate, String customerId, List<OrderDetailDTO> orderDetails){
+        try {
+            return placeOrderBO.purchaseOrder(new OrderDTO(orderId, orderDate, customerId, orderDetails));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
