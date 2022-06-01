@@ -41,7 +41,7 @@ public class PlaceOrderBOImpl implements PlaceOrderBO {
 
     @Override
     public boolean purchaseOrder(OrderDTO dto) throws SQLException, ClassNotFoundException {
-        System.out.println("PlaceOrderBoImpl ekeee");
+
         /*Transaction*/
         Connection connection = DBConnection.getInstance().getConnection();
         /*if order id already exist*/
@@ -49,21 +49,21 @@ public class PlaceOrderBOImpl implements PlaceOrderBO {
 
         }
         connection.setAutoCommit(false);
-        System.out.println("order ekee save wenna ynne ekeee");
+
         boolean save = orderDAO.save(new Order(dto.getOrderId(), dto.getOrderDate(), dto.getCustomerId()));
 
         if (!save) {
-            System.out.println("order ekee save wela naa");
+
             connection.rollback();
             connection.setAutoCommit(true);
             return false;
         }
-        System.out.println("order ekee save wela .......\n");
 
-        System.out.println("order Detail ekee save wenna yannnee\n");
+
+
 
         for (OrderDetailDTO detailDTO : dto.getOrderDetails()) {
-            System.out.println("Order set eka loop wenawa...");
+
             boolean save1 = orderDetailDAO.save(new OrderDetail(detailDTO.getOrderId(), detailDTO.getItemCode(), detailDTO.getQty(), detailDTO.getUnitPrice(), detailDTO.getDiscount()));
             if (!save1) {
                 System.out.println("Order Detail ekeeta save une naaa");
@@ -86,7 +86,7 @@ public class PlaceOrderBOImpl implements PlaceOrderBO {
                 connection.setAutoCommit(true);
                 return false;
             }
-            System.out.println("Order Detail ekata save unaa");
+
         }
         connection.commit();
         connection.setAutoCommit(true);
@@ -117,8 +117,8 @@ public class PlaceOrderBOImpl implements PlaceOrderBO {
     }
 
     @Override
-    public String generateNewOrderID() {
-        return null;
+    public String generateNewOrderID() throws SQLException, ClassNotFoundException {
+        return orderDAO.generateNewId();
     }
 
     @Override

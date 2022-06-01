@@ -12,6 +12,7 @@ import lk.LeonMart.superMarket.dao.CrudUtil;
 import lk.LeonMart.superMarket.dao.custom.OrderDAO;
 import lk.LeonMart.superMarket.entity.Order;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -49,6 +50,7 @@ public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public String generateNewId() throws SQLException, ClassNotFoundException {
-        return null;
+        ResultSet rst = CrudUtil.execute("SELECT OrderId FROM `Order` ORDER BY OrderId DESC LIMIT 1;");
+        return rst.next() ? String.format("OID-%03d", (Integer.parseInt(rst.getString("OrderID").replace("OID-", "")) + 1)) : "OID-001";
     }
 }

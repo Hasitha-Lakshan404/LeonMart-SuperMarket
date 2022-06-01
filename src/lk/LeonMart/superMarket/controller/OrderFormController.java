@@ -52,7 +52,7 @@ public class OrderFormController {
     ObservableList<OrderDetailsTM> obOrderDetailTmList = FXCollections.observableArrayList();
     private String orderId;
 
-    public void initialize() {
+    public void initialize() throws SQLException, ClassNotFoundException {
 
         tblOrderCart.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("itemCode"));
         tblOrderCart.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -158,8 +158,8 @@ public class OrderFormController {
         }
     }
 
-    private String generateNewOrderId() {
-        return "O00-001";
+    private String generateNewOrderId() throws SQLException, ClassNotFoundException {
+        return placeOrderBO.generateNewOrderID();
     }
 
 
@@ -185,9 +185,6 @@ public class OrderFormController {
         double unitPrice = Double.parseDouble(txtUnitPrice.getText());
         int qty = Integer.parseInt(txtQty.getText());
         double total = unitPrice * qty;
-
-//        BigDecimal unitPrice = new BigDecimal(txtUnitPrice.getText()).setScale(2);
-//        BigDecimal total = unitPrice.multiply(new BigDecimal(qty)).setScale(2);
 
 
         if (isExist(itemCode)) {
@@ -217,29 +214,6 @@ public class OrderFormController {
 
         }
         lblTotal.setText(String.valueOf(getAllTotalCost()));
-
-       /* boolean exists = tblOrderCart.getItems().stream().anyMatch(detail -> detail.getCode().equals(itemCode));
-
-        if (exists) {
-            OrderDetailTM orderDetailTM = tblOrderDetails.getItems().stream().filter(detail -> detail.getCode().equals(itemCode)).findFirst().get();
-
-            if (btnSave.getText().equalsIgnoreCase("Update")) {
-                orderDetailTM.setQty(qty);
-                orderDetailTM.setTotal(total);
-                tblOrderDetails.getSelectionModel().clearSelection();
-            } else {
-                orderDetailTM.setQty(orderDetailTM.getQty() + qty);
-                total = new BigDecimal(orderDetailTM.getQty()).multiply(unitPrice).setScale(2);
-                orderDetailTM.setTotal(total);
-            }
-            tblOrderDetails.refresh();
-        } else {
-            tblOrderDetails.getItems().add(new OrderDetailTM(itemCode, description, qty, unitPrice, total));
-        }
-        cmbItemCode.getSelectionModel().clearSelection();
-        cmbItemCode.requestFocus();
-        calculateTotal();
-        enableOrDisablePlaceOrderButton();*/
 
 
     }

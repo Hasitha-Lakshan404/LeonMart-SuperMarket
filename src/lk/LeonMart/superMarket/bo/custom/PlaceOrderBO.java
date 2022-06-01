@@ -25,7 +25,7 @@ public interface PlaceOrderBO {
 
     boolean checkCustomerIsAvailable(String id) ;
 
-    String generateNewOrderID() ;
+    String generateNewOrderID() throws SQLException, ClassNotFoundException;
 
     ArrayList<CustomerDTO> getAllCustomers() throws SQLException, ClassNotFoundException;
 
