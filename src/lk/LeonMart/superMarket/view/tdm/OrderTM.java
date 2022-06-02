@@ -1,35 +1,31 @@
 /**
  * @author : Hasitha Lakshan
  * Project :SuperMarket
- * Date :5/30/2022
- * Time :4:03 PM
+ * Date :6/2/2022
+ * Time :3:27 PM
  */
 
-package lk.LeonMart.superMarket.entity;
+package lk.LeonMart.superMarket.view.tdm;
 
 
-import lk.LeonMart.superMarket.dto.OrderDetailDTO;
-
-import java.sql.Date;
 import java.time.LocalDate;
-import java.util.List;
 
-public class Order {
+public class OrderTM {
     private String OrderId;
     private LocalDate orderDate;
     private String customerId;
 
 
 
-    public Order() {
-
+    public OrderTM() {
     }
 
-    public Order(String orderId, LocalDate orderDate, String customerId) {
+    public OrderTM(String orderId, LocalDate orderDate, String customerId) {
         OrderId = orderId;
         this.orderDate = orderDate;
         this.customerId = customerId;
     }
+
 
 
 

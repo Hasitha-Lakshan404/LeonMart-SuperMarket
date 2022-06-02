@@ -14,6 +14,7 @@ public class OrderDetailDTO {
     private int qty;
     private double unitPrice;
     private double discount;
+    private double total;
 
     public OrderDetailDTO() {
     }
@@ -24,6 +25,24 @@ public class OrderDetailDTO {
         this.qty = qty;
         this.unitPrice = unitPrice;
         this.discount = discount;
+    }
+
+    //for shows orDetails table
+    public OrderDetailDTO(String orderId, String itemCode, int qty, double unitPrice, double discount, double total) {
+        OrderId = orderId;
+        ItemCode = itemCode;
+        this.qty = qty;
+        this.unitPrice = unitPrice;
+        this.discount = discount;
+        this.total = total;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     public String getOrderId() {

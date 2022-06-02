@@ -10,16 +10,27 @@ package lk.LeonMart.superMarket.dao.custom.impl;
 
 import lk.LeonMart.superMarket.dao.CrudUtil;
 import lk.LeonMart.superMarket.dao.custom.OrderDAO;
+import lk.LeonMart.superMarket.entity.Item;
 import lk.LeonMart.superMarket.entity.Order;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class OrderDAOImpl implements OrderDAO {
     @Override
     public ArrayList<Order> getAll() throws SQLException, ClassNotFoundException {
-        return null;
+        ResultSet resultSet=CrudUtil.execute("SELECT * FROM `Order`");
+
+        ArrayList<Order> allOrders=new ArrayList<>();
+
+        while (resultSet.next()) {
+            allOrders.add(new Order(resultSet.getString(1), resultSet.getDate(2).toLocalDate(), resultSet.getString(3))
+            );
+        }
+
+        return allOrders;
     }
 
     @Override

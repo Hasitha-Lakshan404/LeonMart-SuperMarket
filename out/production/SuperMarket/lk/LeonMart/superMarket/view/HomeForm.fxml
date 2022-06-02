@@ -114,6 +114,14 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
+            <JFXButton id="allOrderButton" fx:id="btnAllOrder" layoutY="478.0" onMouseClicked="#buttonsClickOnAction" prefHeight="73.0" prefWidth="215.0" styleClass="menuItem" text="All Orders">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
          </children>
       </AnchorPane>
       <Label fx:id="lblUserShow" layoutX="1770.0" layoutY="19.0" prefHeight="21.0" prefWidth="93.0" text="Admin">
@@ -139,5 +147,10 @@
             </LinearGradient>
          </textFill>
       </Label>
+      <ImageView fitHeight="38.0" fitWidth="31.0" layoutX="14.0" layoutY="557.0" pickOnBounds="true">
+         <image>
+            <Image url="@assests/images/allOr.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
