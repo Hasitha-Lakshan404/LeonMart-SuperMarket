@@ -10,6 +10,7 @@ package lk.LeonMart.superMarket.bo.custom;
 import lk.LeonMart.superMarket.bo.SuperBO;
 import lk.LeonMart.superMarket.dto.ItemDTO;
 import lk.LeonMart.superMarket.dto.OrderDTO;
+import lk.LeonMart.superMarket.dto.OrderDetailDTO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,5 +20,8 @@ public interface OrderBO extends SuperBO {
     ArrayList<OrderDTO> getAllOrders() throws SQLException, ClassNotFoundException;
 
     boolean deleteOrders(String id) throws SQLException, ClassNotFoundException;
+
+    ArrayList<OrderDTO> getAllSearchOrder(String enteredText) throws SQLException, ClassNotFoundException;
+
 
 }

@@ -24,16 +24,34 @@ public class OrderBOImpl implements OrderBO {
     @Override
     public ArrayList<OrderDTO> getAllOrders() throws SQLException, ClassNotFoundException {
         ArrayList<Order> all = orderDAO.getAll();
-        ArrayList<OrderDTO> allOrder =new ArrayList<>();
+        ArrayList<OrderDTO> allOrder = new ArrayList<>();
 
         for (Order order : all) {
-            allOrder.add(new OrderDTO(order.getOrderId(),order.getOrderDate(),order.getCustomerId()));
+            allOrder.add(new OrderDTO(order.getOrderId(), order.getOrderDate(), order.getCustomerId()));
         }
         return allOrder;
     }
 
     @Override
     public boolean deleteOrders(String id) throws SQLException, ClassNotFoundException {
-        return false;
+        return orderDAO.delete(id);
+    }
+
+    @Override
+    public ArrayList<OrderDTO> getAllSearchOrder(String enteredText) throws SQLException, ClassNotFoundException {
+
+        ArrayList<Order> order = orderDAO.searchOrder(enteredText);
+
+        ArrayList<OrderDTO> orDto = new ArrayList<>();
+
+        for (Order orderList : order) {
+
+            orDto.add(new OrderDTO(
+                    orderList.getOrderId(),
+                    orderList.getOrderDate(),
+                    orderList.getCustomerId()
+            ));
+        }
+        return orDto;
     }
 }

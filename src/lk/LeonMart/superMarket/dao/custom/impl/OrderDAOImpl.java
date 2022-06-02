@@ -8,10 +8,12 @@
 package lk.LeonMart.superMarket.dao.custom.impl;
 
 
+import com.sun.org.apache.xpath.internal.operations.Or;
 import lk.LeonMart.superMarket.dao.CrudUtil;
 import lk.LeonMart.superMarket.dao.custom.OrderDAO;
 import lk.LeonMart.superMarket.entity.Item;
 import lk.LeonMart.superMarket.entity.Order;
+import lk.LeonMart.superMarket.entity.OrderDetail;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -57,12 +59,29 @@ public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public boolean delete(String s) throws SQLException, ClassNotFoundException {
-        return false;
+        return  CrudUtil.execute("DELETE FROM `order` WHERE OrderID=?",s);
     }
 
     @Override
     public String generateNewId() throws SQLException, ClassNotFoundException {
         ResultSet rst = CrudUtil.execute("SELECT OrderId FROM `Order` ORDER BY OrderId DESC LIMIT 1;");
         return rst.next() ? String.format("OID-%03d", (Integer.parseInt(rst.getString("OrderID").replace("OID-", "")) + 1)) : "OID-001";
+    }
+
+    @Override
+    public ArrayList<Order> searchOrder(String enteredText) throws SQLException, ClassNotFoundException {
+        ResultSet result = CrudUtil.execute("SELECT * FROM `order` where OrderId LIKE ? OR OrderDate LIKE ? OR CusID LIKE ? ORDER BY OrderId DESC", enteredText, enteredText, enteredText);
+        ArrayList<Order> orList = new ArrayList<>();
+
+
+        while (result.next()) {
+            orList.add(new Order(
+                    result.getString(1),
+                    result.getDate(2).toLocalDate(),
+                    result.getString(3)
+
+            ));
+        }
+        return orList;
     }
 }

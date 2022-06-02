@@ -12,6 +12,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -84,12 +85,46 @@ public class AllOrdersFormController {
 
     }
 
-    public void menuDeleteOnAction(ActionEvent actionEvent) {
+    public void menuDeleteOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        OrderTM selectedItem = tblOrder.getSelectionModel().getSelectedItem();
+        boolean b = orderBO.deleteOrders(selectedItem.getOrderId());
 
+        if (b) {
+            new Alert(Alert.AlertType.INFORMATION, "Deleted SussesFull").show();
+            tblOrderDetail.getItems().clear();
+            tblOrder.getItems().clear();
+            initialize();
+        } else {
+
+            new Alert(Alert.AlertType.INFORMATION, "Something Went Wrong..").show();
+        }
     }
 
 
-    public void searchOrderOnKeyReleased(KeyEvent keyEvent) {
+    public void searchOrderOnKeyReleased(KeyEvent keyEvent) throws SQLException, ClassNotFoundException {
+
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+            String value = "%" + txtSearchOrder.getText() + "%";
+
+            ArrayList<OrderDTO> orderDto = orderBO.getAllSearchOrder(value);
+
+
+            ObservableList<OrderTM> orderTMS = FXCollections.observableArrayList();
+
+
+            for (OrderDTO od : orderDto) {
+                orderTMS.add(new OrderTM(
+                        od.getOrderId(),
+                        od.getOrderDate(),
+                        od.getCustomerId()
+                        ));
+
+            }
+
+            tblOrder.getItems().clear();
+            tblOrder.getItems().addAll(orderTMS);
+            tblOrder.refresh();
+        }
 
     }
 
