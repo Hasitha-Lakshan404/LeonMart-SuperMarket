@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="968.0" prefWidth="1838.0" style="-fx-background-color: #e1e1e1;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.LeonMart.superMarket.controller.AllOrdersFormController">
+   <children>
+      <TableView fx:id="tblOrderDetail" layoutX="633.0" layoutY="323.0" prefHeight="377.0" prefWidth="1189.0">
+         <columns>
+            <TableColumn prefWidth="159.0" text="Order ID" />
+            <TableColumn prefWidth="235.0" text="Item Code" />
+            <TableColumn prefWidth="149.0" text="QTY" />
+            <TableColumn prefWidth="263.0" text="Unit Price" />
+            <TableColumn prefWidth="163.0" text="Discount" />
+            <TableColumn prefWidth="219.0" text="Total" />
+         </columns>
+         <contextMenu>
+            <ContextMenu />
+         </contextMenu>
+      </TableView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="46.0" layoutX="216.0" layoutY="191.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="3.0" width="435.0" />
+      <ImageView fitHeight="25.0" fitWidth="31.0" layoutX="231.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assests/images/search.png" />
+         </image>
+      </ImageView>
+      <Line endX="100.0" layoutX="168.0" layoutY="204.0" startX="100.0" startY="21.0" />
+      <TextField layoutX="283.0" layoutY="199.0" onKeyReleased="#searchOrderOnKeyReleased" prefHeight="31.0" prefWidth="361.0" promptText="Search by : Order Id, Date, Customer Id" style="-fx-background-color: #e1e1e1;" />
+      <TableView fx:id="tblOrder" layoutX="30.0" layoutY="322.0" prefHeight="377.0" prefWidth="602.0">
+         <columns>
+            <TableColumn prefWidth="159.0" text="Order Id" />
+            <TableColumn prefWidth="235.0" text="Date" />
+            <TableColumn prefWidth="197.0" text="Customer Id" />
+         </columns>
+         <contextMenu>
+            <ContextMenu>
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#menuDeleteOnAction" text="Delete" />
+               </items>
+            </ContextMenu>
+         </contextMenu>
+      </TableView>
+      <Label layoutX="50.0" layoutY="189.0" text="Orders :">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="46.0" layoutX="1081.0" layoutY="198.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="3.0" width="600.0" />
+      <ImageView fitHeight="25.0" fitWidth="31.0" layoutX="1096.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assests/images/search.png" />
+         </image>
+      </ImageView>
+      <Line endX="100.0" layoutX="1033.0" layoutY="211.0" startX="100.0" startY="21.0" />
+      <TextField layoutX="1148.0" layoutY="206.0" onKeyReleased="#searchOrderDetailOnKeyReleased" prefHeight="31.0" prefWidth="526.0" promptText="Search by : ItemCode, QTY, Price, Discount, Total" style="-fx-background-color: #e1e1e1;" />
+      <Label layoutX="832.0" layoutY="196.0" text="Order Details :">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+      </Label>
+      <Label layoutX="1258.0" layoutY="750.0" text="Total :">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+      </Label>
+      <Label layoutX="1358.0" layoutY="751.0" prefHeight="49.0" prefWidth="307.0" text="1000.00">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
