@@ -9,6 +9,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
 import lk.LeonMart.superMarket.bo.custom.ItemBO;
 import lk.LeonMart.superMarket.bo.custom.impl.ItemBOImpl;
@@ -32,6 +34,7 @@ public class ItemFormController {
     public JFXButton btnAdd;
 
     public TableColumn colDiscount;
+    public JFXTextField txtDiscount;
     double updateDiscount;
 
     ItemBO itemBO = new ItemBOImpl();
@@ -49,12 +52,6 @@ public class ItemFormController {
 
         loadAllItems();
         generateNewId();
-
-
-//        colDiscount.setCellFactory(TextFieldTableCell.forTableColumn());
-
-//        Callback<TableColumn<Double, Double>, TableCell<Double, Double>> tableColumnTableCellCallback = TableCell.;
-//        colDiscount.setCellFactory(tableColumnTableCellCallback);
 
 
     }
@@ -92,7 +89,6 @@ public class ItemFormController {
                     updateDiscount))){
                 new Alert(Alert.AlertType.INFORMATION,"Item Updated Successful").show();
             }
-
 
             btnAdd.setText("Add Item");
             loadAllItems();
@@ -166,4 +162,55 @@ public class ItemFormController {
             e.printStackTrace();
         }
     }
+
+    ItemTM selectedItem;
+    public void menuEditDiscountOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        selectedItem=tblItem.getSelectionModel().getSelectedItem();
+        txtDiscount.setText(String.valueOf(selectedItem.getDiscount()));
+        btnDisable();
+        clearText();
+    }
+
+    public void DiscountEditOnKeyReleased(KeyEvent keyEvent) throws SQLException, ClassNotFoundException {
+
+        if(keyEvent.getCode().equals(KeyCode.ENTER)){
+
+            if(txtDiscount.getText() != null && !txtDiscount.getText().equals("")) {
+                final boolean b = itemBO.updateItem(new ItemDTO(selectedItem.getItemCode(),
+                        selectedItem.getDescription(),
+                        selectedItem.getPackSize(),
+                        selectedItem.getUnitPrice(),
+                        selectedItem.getQtyOnHand(),
+                        Double.parseDouble(txtDiscount.getText())));
+
+                if (b) {
+                    new Alert(Alert.AlertType.INFORMATION, "Discount Updated Successfully").show();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Discount Updated UN-Successfully").show();
+                }
+
+                txtDiscount.clear();
+                loadAllItems();
+                btnEnable();
+                selectedItem=null;
+            }
+        }
+    }
+
+    private void btnDisable(){
+        txtItemId.setEditable(false);
+        txtDescription.setEditable(false);
+        txtPackSize.setEditable(false);
+        txtUnitPrice.setEditable(false);
+        txtQty.setEditable(false);
+    }
+
+    private void btnEnable(){
+        txtItemId.setEditable(true);
+        txtDescription.setEditable(true);
+        txtPackSize.setEditable(true);
+        txtUnitPrice.setEditable(true);
+        txtQty.setEditable(true);
+    }
+
 }

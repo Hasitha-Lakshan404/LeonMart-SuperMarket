@@ -8,11 +8,15 @@
 package lk.LeonMart.superMarket.controller;
 
 
+import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import lk.LeonMart.superMarket.bo.custom.OrderBO;
 import lk.LeonMart.superMarket.bo.custom.OrderDetailBO;
@@ -29,6 +33,17 @@ import java.util.ArrayList;
 public class AllOrdersFormController {
     public TableView<OrderTM> tblOrder;
     public TableView<OrderDetailsTM> tblOrderDetail;
+    public Label lblTotal;
+
+    public JFXTextField txtOrderId;
+    public JFXTextField txtItemCode;
+    public JFXTextField txtQty;
+    public JFXTextField txtDiscount;
+    public JFXTextField txtTotal;
+    public JFXTextField txtUnitPrice;
+
+    public TextField txtSearchOrder;
+    public TextField txtSearchOrderDetails;
 
     OrderBO orderBO = new OrderBOImpl();
     OrderDetailBO orderDetailBO = new OrderDetailBOImpl();
@@ -56,46 +71,12 @@ public class AllOrdersFormController {
         }
         tblOrder.refresh();
 
-        tblOrder.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 
+        tblOrder.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 
             if (newValue != null) {
 
-
-                //Search by ID
-                String value = "%" + newValue.getOrderId() + "%";
-
-                ArrayList<OrderDetailDTO> oDetailDto = null;
-
-                try {
-
-                    oDetailDto = orderDetailBO.searchOrderDetails(value);
-
-
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
-
-
-                ObservableList<OrderDetailsTM> orderDetailsTMS = FXCollections.observableArrayList();
-
-
-                for (OrderDetailDTO od : oDetailDto) {
-
-                    orderDetailsTMS.add(new OrderDetailsTM(od.getOrderId(),
-                            od.getItemCode(),
-                            od.getQty(),
-                            od.getUnitPrice(),
-                            od.getDiscount(),
-                            od.getTotal()));
-                }
-                tblOrderDetail.getItems().clear();
-                tblOrderDetail.getItems().addAll(orderDetailsTMS);
-                tblOrderDetail.refresh();
-
-
+                searchOrderDetails(newValue.getOrderId());
             }
 
         });
@@ -113,7 +94,53 @@ public class AllOrdersFormController {
     }
 
     public void searchOrderDetailOnKeyReleased(KeyEvent keyEvent) {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+            tblOrderDetail.getItems().clear();
+            searchOrderDetails(txtSearchOrderDetails.getText());
+        }
+    }
+
+    private void searchOrderDetails(String newValue) {
+        //Search by ID
+        String value = "%" + newValue + "%";
+
+        ArrayList<OrderDetailDTO> oDetailDto = null;
+
+        try {
+
+            oDetailDto = orderDetailBO.searchOrderDetails(value);
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+        ObservableList<OrderDetailsTM> orderDetailsTMS = FXCollections.observableArrayList();
+
+        double allTotal = 0;
+
+        for (OrderDetailDTO od : oDetailDto) {
+            orderDetailsTMS.add(new OrderDetailsTM(od.getOrderId(),
+                    od.getItemCode(),
+                    od.getQty(),
+                    od.getUnitPrice(),
+                    od.getDiscount(),
+                    od.getTotal()));
+
+            allTotal += od.getTotal();
+        }
+
+        tblOrderDetail.getItems().clear();
+        tblOrderDetail.getItems().addAll(orderDetailsTMS);
+        tblOrderDetail.refresh();
+        lblTotal.setText(String.valueOf(allTotal));
+
 
     }
 
 }
+
+

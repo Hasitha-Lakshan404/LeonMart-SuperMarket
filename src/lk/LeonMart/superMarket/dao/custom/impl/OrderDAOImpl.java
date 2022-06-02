@@ -19,9 +19,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class OrderDAOImpl implements OrderDAO {
+
     @Override
     public ArrayList<Order> getAll() throws SQLException, ClassNotFoundException {
-        ResultSet resultSet=CrudUtil.execute("SELECT * FROM `Order`");
+        ResultSet resultSet=CrudUtil.execute("SELECT * FROM `Order` ORDER BY OrderId DESC");
 
         ArrayList<Order> allOrders=new ArrayList<>();
 

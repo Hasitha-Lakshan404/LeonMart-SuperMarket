@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface OrderBO extends SuperBO {
+
     ArrayList<OrderDTO> getAllOrders() throws SQLException, ClassNotFoundException;
 
     boolean deleteOrders(String id) throws SQLException, ClassNotFoundException;
