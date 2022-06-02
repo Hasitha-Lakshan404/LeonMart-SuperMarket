@@ -3,10 +3,15 @@ package lk.LeonMart.superMarket.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import lk.LeonMart.superMarket.bo.custom.CustomerBO;
 import lk.LeonMart.superMarket.bo.custom.impl.CustomerBOImpl;
 import lk.LeonMart.superMarket.dto.CustomerDTO;
@@ -26,6 +31,7 @@ public class CustomerFormController {
     public JFXTextField txtProvince;
     public JFXComboBox<String> cmbCusTitle;
     public JFXButton btnAdd;
+    public TextField txtSearchCustomer;
 
 
     CustomerBO customerBO = new CustomerBOImpl();
@@ -76,7 +82,6 @@ public class CustomerFormController {
             btnAdd.setText("Save Customer");
 
 
-
             loadAllCustomers();
 
             clearTexts();
@@ -119,7 +124,7 @@ public class CustomerFormController {
     }
 
     public void menuDeleteOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-        CustomerTM selectedItem=tblCustomer.getSelectionModel().getSelectedItem();
+        CustomerTM selectedItem = tblCustomer.getSelectionModel().getSelectedItem();
         customerBO.deleteCustomer(selectedItem.getCusId());
         tblCustomer.getItems().removeAll(selectedItem);
         generateId();
@@ -153,4 +158,27 @@ public class CustomerFormController {
         txtCusId.setText(customerBO.generateNewCustomerID());
     }
 
+    public void searchDetails(KeyEvent keyEvent) throws SQLException, ClassNotFoundException {
+
+        String search = "%" + txtSearchCustomer.getText() + "%";
+
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+            ArrayList<CustomerDTO> customerDTOS = customerBO.searchCustomers(search);
+            ObservableList<CustomerTM> oBCustomerTMS = FXCollections.observableArrayList();
+
+            for (CustomerDTO cusDto : customerDTOS) {
+                oBCustomerTMS.add(new CustomerTM(cusDto.getCusId(),
+                        cusDto.getCusTitle(),
+                        cusDto.getCusName(),
+                        cusDto.getCusAddress(),
+                        cusDto.getCity(),
+                        cusDto.getProvince(),
+                        cusDto.getPostalCode()));
+            }
+            tblCustomer.getItems().clear();
+            tblCustomer.getItems().addAll(oBCustomerTMS);
+            tblCustomer.refresh();
+        }
+
+    }
 }

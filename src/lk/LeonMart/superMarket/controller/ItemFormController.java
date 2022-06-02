@@ -4,8 +4,12 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.Callback;
 import lk.LeonMart.superMarket.bo.custom.ItemBO;
 import lk.LeonMart.superMarket.bo.custom.impl.ItemBOImpl;
 import lk.LeonMart.superMarket.dto.CustomerDTO;
@@ -26,9 +30,13 @@ public class ItemFormController {
     public JFXTextField txtQty;
     public JFXTextField txtDescription;
     public JFXButton btnAdd;
+
+    public TableColumn colDiscount;
     double updateDiscount;
 
     ItemBO itemBO = new ItemBOImpl();
+
+
 
     public void initialize() throws SQLException, ClassNotFoundException {
 
@@ -41,6 +49,13 @@ public class ItemFormController {
 
         loadAllItems();
         generateNewId();
+
+
+//        colDiscount.setCellFactory(TextFieldTableCell.forTableColumn());
+
+//        Callback<TableColumn<Double, Double>, TableCell<Double, Double>> tableColumnTableCellCallback = TableCell.;
+//        colDiscount.setCellFactory(tableColumnTableCellCallback);
+
 
     }
 
@@ -136,4 +151,19 @@ public class ItemFormController {
         txtItemId.setText(itemBO.generateNewItemID());
     }
 
+    public void colDiscountEditCommit(TableColumn.CellEditEvent cellEditEvent) {
+        ItemTM item = tblItem.getSelectionModel().getSelectedItem();
+
+        item.setDiscount(Double.parseDouble(cellEditEvent.getNewValue().toString()));
+
+        //Update Quarry->
+        try {
+            if (itemBO.updateItem(new ItemDTO(item.getItemCode(),item.getDescription(),item.getPackSize(),item.getUnitPrice(),
+                    item.getQtyOnHand(), item.getDiscount()))) {
+                loadAllItems();
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }

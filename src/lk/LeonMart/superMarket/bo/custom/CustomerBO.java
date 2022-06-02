@@ -9,6 +9,7 @@ package lk.LeonMart.superMarket.bo.custom;
 
 import lk.LeonMart.superMarket.bo.SuperBO;
 import lk.LeonMart.superMarket.dto.CustomerDTO;
+import lk.LeonMart.superMarket.entity.Customer;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -25,4 +26,7 @@ public interface CustomerBO extends SuperBO {
     boolean deleteCustomer(String id) throws SQLException, ClassNotFoundException;
 
     String generateNewCustomerID() throws SQLException, ClassNotFoundException;
+
+    public ArrayList<CustomerDTO> searchCustomers(String enteredText) throws SQLException, ClassNotFoundException;
+
 }

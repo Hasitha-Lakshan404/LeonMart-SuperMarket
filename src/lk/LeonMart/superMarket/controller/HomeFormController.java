@@ -24,6 +24,8 @@ public class HomeFormController {
     public JFXButton btnReport;
     public Label lblHomeTitleShow;
 
+    public JFXButton btnAllOrder;
+    public JFXButton btnDashboard;
 
 
     String userNameShow;
@@ -78,6 +80,10 @@ public class HomeFormController {
             }else if (btn.getId().equals("dashBoardButton")) {
                 setUI("DashboardForm");
                 lblHomeTitleShow.setText("Dashboard");
+
+            }else if (btn.getId().equals("allOrderButton")) {
+                setUI("DashboardForm");
+                lblHomeTitleShow.setText("All Orders");
             }
 
         }

@@ -100,4 +100,22 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
 
+    @Override
+    public ArrayList<Customer> searchCustomers(String enteredText) throws SQLException, ClassNotFoundException {
+        ResultSet result = CrudUtil.execute("SELECT * FROM Customer where CusID LIKE ? OR CusTitle LIKE ? OR CusName LIKE ? OR CusAddress LIKE ? OR City LIKE ? OR Province LIKE ? OR PostalCode LIKE ? ", enteredText, enteredText, enteredText, enteredText, enteredText, enteredText, enteredText);
+        ArrayList<Customer> list = new ArrayList<>();
+
+        while (result.next()) {
+            list.add(new Customer(result.getString(1),
+                    result.getString(2),
+                    result.getString(3),
+                    result.getString(4),
+                    result.getString(5),
+                    result.getString(6),
+                    result.getString(7)
+
+            ));
+        }
+        return list;
+    }
 }

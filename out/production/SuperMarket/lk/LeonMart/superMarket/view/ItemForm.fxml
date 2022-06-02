@@ -24,7 +24,7 @@
             <TableColumn prefWidth="149.0" text="Pack Size" />
             <TableColumn prefWidth="263.0" text="Unit Price" />
             <TableColumn prefWidth="135.0" text="Qty" />
-            <TableColumn prefWidth="247.0" text="Discount" />
+            <TableColumn fx:id="colDiscount" onEditCommit="#colDiscountEditCommit" prefWidth="247.0" text="Discount" />
          </columns>
          <contextMenu>
             <ContextMenu>
