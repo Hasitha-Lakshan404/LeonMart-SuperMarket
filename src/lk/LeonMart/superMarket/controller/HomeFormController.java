@@ -82,7 +82,7 @@ public class HomeFormController {
                 lblHomeTitleShow.setText("Dashboard");
 
             }else if (btn.getId().equals("allOrderButton")) {
-                setUI("DashboardForm");
+                setUI("AllOrdersForm");
                 lblHomeTitleShow.setText("All Orders");
             }
 
