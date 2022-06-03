@@ -77,6 +77,7 @@ public class CustomerBOImpl implements CustomerBO {
 
     @Override
     public ArrayList<CustomerDTO> searchCustomers(String enteredText) throws SQLException, ClassNotFoundException {
+
         ArrayList<Customer> customers = customerDAO.searchCustomers(enteredText);
         ArrayList<CustomerDTO> cusDto=new ArrayList<>();
 
