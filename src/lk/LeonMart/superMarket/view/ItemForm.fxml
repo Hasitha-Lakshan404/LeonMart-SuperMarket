@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="968.0" prefWidth="1838.0" style="-fx-background-color: #e1e1e1;" stylesheets="@assests/style/MainTheam.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.LeonMart.superMarket.controller.ItemFormController">
+<AnchorPane prefHeight="968.0" prefWidth="1838.0" style="-fx-background-color: #e1e1e1;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.LeonMart.superMarket.controller.ItemFormController">
    <children>
       <TableView fx:id="tblItem" layoutX="287.0" layoutY="526.0" prefHeight="377.0" prefWidth="1189.0">
          <columns>
@@ -70,8 +71,8 @@
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="797.0" layoutY="135.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
       <JFXTextField fx:id="txtQty" layoutX="812.0" layoutY="147.0" prefHeight="31.0" prefWidth="231.0" promptText="ex: 00" />
-      <JFXButton fx:id="btnAdd" layoutX="1119.0" layoutY="301.0" onAction="#ItemAddOnAction" prefHeight="48.0" prefWidth="241.0" ripplerFill="#39c2ae" style="-fx-background-color: #52d0f7;" text="Add Item" />
-      <JFXButton id="cusButtonText" layoutX="1417.0" layoutY="301.0" onAction="#ItemClearOnAction" prefHeight="48.0" prefWidth="241.0" ripplerFill="#39c2ae" style="-fx-background-color: #f75e5e;" text="Clear" />
+      <JFXButton id="effect" fx:id="btnAdd" layoutX="1119.0" layoutY="301.0" onAction="#ItemAddOnAction" prefHeight="48.0" prefWidth="241.0" ripplerFill="#39c2ae" style="-fx-background-color: #52d0f7;" text="Add Item" />
+      <JFXButton id="effect" layoutX="1417.0" layoutY="301.0" onAction="#ItemClearOnAction" prefHeight="48.0" prefWidth="241.0" ripplerFill="#39c2ae" style="-fx-background-color: #9477d9; -fx-text-fill: #133562;" text="Clear" />
       <JFXTextField fx:id="txtDescription" layoutX="86.0" layoutY="305.0" prefHeight="31.0" prefWidth="231.0" promptText="ex: SunLight" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="383.0" layoutY="453.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="989.0" />
       <ImageView fitHeight="25.0" fitWidth="31.0" layoutX="395.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true">
@@ -90,4 +91,8 @@
       <JFXTextField fx:id="txtDiscount" alignment="CENTER_RIGHT" layoutX="817.0" layoutY="308.0" onKeyReleased="#DiscountEditOnKeyReleased" prefHeight="31.0" prefWidth="121.0" promptText="ex: 5" />
       <Label layoutX="950.0" layoutY="313.0" text="\%" />
    </children>
+   <stylesheets>
+      <URL value="@assests/style/MainTheam.css" />
+      <URL value="@assests/style/Tables.css" />
+   </stylesheets>
 </AnchorPane>

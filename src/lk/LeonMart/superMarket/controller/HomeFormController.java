@@ -74,6 +74,8 @@ public class HomeFormController {
                 lblHomeTitleShow.setText("Order");
 
             } else if (btn.getId().equals("ReportButton")) {
+                setUI("MainReportForm");
+                lblHomeTitleShow.setText("Reports");
 
             } else if (btn.getId().equals("SettingsButton")) {
 

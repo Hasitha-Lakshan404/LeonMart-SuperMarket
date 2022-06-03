@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="apnMain" prefHeight="968.0" prefWidth="1838.0" style="-fx-background-color: #e1e1e1;" stylesheets="@assests/style/Tables.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.LeonMart.superMarket.controller.MainReportFormController">
+   <children>
+      <TableView fx:id="tblMostItem" layoutX="26.0" layoutY="499.0" prefHeight="377.0" prefWidth="857.0">
+         <columns>
+            <TableColumn prefWidth="161.0" text="Item Code" />
+            <TableColumn prefWidth="169.0" text="Description" />
+            <TableColumn prefWidth="179.0" text="Pack Size" />
+            <TableColumn prefWidth="175.0" text="Unit Price" />
+            <TableColumn prefWidth="172.0" text="QTY" />
+         </columns>
+      </TableView>
+      <TableView fx:id="tblLeastItem" layoutX="940.0" layoutY="499.0" prefHeight="377.0" prefWidth="857.0">
+         <columns>
+            <TableColumn prefWidth="161.0" text="Item Code" />
+            <TableColumn prefWidth="169.0" text="Description" />
+            <TableColumn prefWidth="179.0" text="Pack Size" />
+            <TableColumn prefWidth="175.0" text="Unit Price" />
+            <TableColumn prefWidth="172.0" text="QTY" />
+         </columns>
+      </TableView>
+      <Label layoutX="949.0" layoutY="425.0" text="Least Movable Item">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#212d54" />
+                  <Stop color="BLACK" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="Bookman Old Style" size="27.0" />
+         </font>
+      </Label>
+      <Label layoutX="26.0" layoutY="425.0" text="Most Movable Item">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#212d54" />
+                  <Stop color="BLACK" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="Bookman Old Style" size="27.0" />
+         </font>
+      </Label>
+      <JFXButton id="effect" buttonType="RAISED" contentDisplay="TOP" layoutX="307.0" layoutY="84.0" onAction="#btnMonthlyReportOnAction" prefHeight="39.0" prefWidth="296.0" style="-fx-background-color: #8d9de3;" text="Monthly Income Report">
+         <font>
+            <Font name="Bodoni MT" size="19.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true">
+               <image>
+                  <Image url="@assests/images/profit_report.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton id="effect" fx:id="btnAnnually" buttonType="RAISED" contentDisplay="TOP" layoutX="771.0" layoutY="86.0" onAction="#btnAnnuallyReportOnAction" prefHeight="84.0" prefWidth="296.0" style="-fx-background-color: #8d9de3;" text="Anually Income Report">
+         <font>
+            <Font name="Bodoni MT" size="19.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true">
+               <image>
+                  <Image url="@assests/images/profit_report.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton id="effect" buttonType="RAISED" contentDisplay="TOP" layoutX="1221.0" layoutY="88.0" onAction="#btnDailyReportOnAction" prefHeight="84.0" prefWidth="296.0" style="-fx-background-color: #8d9de3;" text="Daily Income Report">
+         <font>
+            <Font name="Bodoni MT" size="19.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true">
+               <image>
+                  <Image url="@assests/images/profit_report.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+   </children>
+</AnchorPane>

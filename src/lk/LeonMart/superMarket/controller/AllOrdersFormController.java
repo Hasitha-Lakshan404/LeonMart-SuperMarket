@@ -87,6 +87,7 @@ public class AllOrdersFormController {
 
     public void menuDeleteOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         OrderTM selectedItem = tblOrder.getSelectionModel().getSelectedItem();
+
         boolean b = orderBO.deleteOrders(selectedItem.getOrderId());
 
         if (b) {
@@ -95,7 +96,6 @@ public class AllOrdersFormController {
             tblOrder.getItems().clear();
             initialize();
         } else {
-
             new Alert(Alert.AlertType.INFORMATION, "Something Went Wrong..").show();
         }
     }
@@ -151,7 +151,6 @@ public class AllOrdersFormController {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
 
         ObservableList<OrderDetailsTM> orderDetailsTMS = FXCollections.observableArrayList();
 

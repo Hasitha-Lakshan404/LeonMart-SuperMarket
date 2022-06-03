@@ -8,25 +8,21 @@
 package lk.LeonMart.superMarket.dao.custom.impl;
 
 
-import com.sun.org.apache.xpath.internal.operations.Or;
 import lk.LeonMart.superMarket.dao.CrudUtil;
 import lk.LeonMart.superMarket.dao.custom.OrderDAO;
-import lk.LeonMart.superMarket.entity.Item;
 import lk.LeonMart.superMarket.entity.Order;
-import lk.LeonMart.superMarket.entity.OrderDetail;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public ArrayList<Order> getAll() throws SQLException, ClassNotFoundException {
-        ResultSet resultSet=CrudUtil.execute("SELECT * FROM `Order` ORDER BY OrderId DESC");
+        ResultSet resultSet = CrudUtil.execute("SELECT * FROM `Order` ORDER BY OrderId DESC");
 
-        ArrayList<Order> allOrders=new ArrayList<>();
+        ArrayList<Order> allOrders = new ArrayList<>();
 
         while (resultSet.next()) {
             allOrders.add(new Order(resultSet.getString(1), resultSet.getDate(2).toLocalDate(), resultSet.getString(3))
@@ -59,7 +55,7 @@ public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public boolean delete(String s) throws SQLException, ClassNotFoundException {
-        return  CrudUtil.execute("DELETE FROM `order` WHERE OrderID=?",s);
+        return CrudUtil.execute("DELETE FROM `order` WHERE OrderID=?", s);
     }
 
     @Override
