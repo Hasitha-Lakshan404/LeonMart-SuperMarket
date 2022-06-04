@@ -1,22 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="apnMain" prefHeight="968.0" prefWidth="1838.0" style="-fx-background-color: #124584;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.LeonMart.superMarket.controller.AnnuallyReportFormController">
+<AnchorPane fx:id="apnMain" prefHeight="968.0" prefWidth="1838.0" style="-fx-background-color: #e1e1e1;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.LeonMart.superMarket.controller.AnnuallyReportFormController">
    <children>
-      <Label layoutX="691.0" layoutY="398.0" text="Annually" textFill="#e0eed5">
-         <font>
-            <Font size="86.0" />
-         </font>
-      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="65.0" layoutX="148.0" layoutY="80.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="433.0" />
       <ImageView fitHeight="47.0" fitWidth="45.0" layoutX="32.0" layoutY="29.0" onMouseClicked="#backMouseClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@assests/images/down.png" />
          </image>
       </ImageView>
+      <LineChart fx:id="tblAnnually" layoutX="21.0" layoutY="174.0" prefHeight="704.0" prefWidth="1854.0" title="Annually Income">
+         <xAxis>
+            <CategoryAxis label="Year" side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis label="Revenue " prefHeight="536.0" prefWidth="109.0" side="LEFT" />
+         </yAxis>
+      </LineChart>
+      <JFXTextField fx:id="txtSearchYearOne" layoutX="254.0" layoutY="93.0" prefHeight="31.0" prefWidth="289.0" promptText="  Select Year">
+         <font>
+            <Font name="Bell MT" size="19.0" />
+         </font>
+      </JFXTextField>
+      <Label layoutX="159.0" layoutY="47.0" text="Year From">
+         <font>
+            <Font name="Bodoni MT" size="19.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="65.0" layoutX="685.0" layoutY="83.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="433.0" />
+      <JFXTextField fx:id="txtSearchYearTwo" layoutX="791.0" layoutY="96.0" prefHeight="31.0" prefWidth="289.0" promptText="  Select Year">
+         <font>
+            <Font name="Bell MT" size="19.0" />
+         </font>
+      </JFXTextField>
+      <Label layoutX="696.0" layoutY="50.0" text="Year To">
+         <font>
+            <Font name="Bodoni MT" size="19.0" />
+         </font>
+      </Label>
+      <Button layoutX="1219.0" layoutY="92.0" mnemonicParsing="false" onAction="#btnSearchOnAction" prefHeight="45.0" prefWidth="149.0" text="Search">
+         <graphic>
+            <ImageView fitHeight="26.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assests/images/search.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Pane fx:id="paneVisible" layoutX="18.0" layoutY="16.0" onMouseClicked="#pneMouseClickOnAction" prefHeight="945.0" prefWidth="1854.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="742.0" layoutY="370.0" prefHeight="128.0" prefWidth="536.0" style="-fx-text-fill: #f0f4f5; -fx-background-color: #156482;" text="Click Here !!!">
+               <font>
+                  <Font name="Calibri" size="79.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

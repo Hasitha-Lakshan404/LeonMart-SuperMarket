@@ -48,7 +48,9 @@ public class OrderFormController {
     public JFXTextField txtQty;
     public Label lblOrderId;
     public Label lblDate;
+
     PlaceOrderBO placeOrderBO = new PlaceOrderBOImpl();
+
     ObservableList<OrderDetailsTM> obOrderDetailTmList = FXCollections.observableArrayList();
     private String orderId;
 
@@ -200,7 +202,8 @@ public class OrderFormController {
 
             //Add data to the Observable List
 
-            OrderDetailsTM orderDetail = new OrderDetailsTM(cmbItemCode.getValue(),
+            OrderDetailsTM orderDetail = new OrderDetailsTM(
+                    cmbItemCode.getValue(),
                     txtItemDescription.getText(),
                     qty,
                     unitPrice,

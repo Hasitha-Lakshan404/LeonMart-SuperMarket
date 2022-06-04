@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="apnMain" prefHeight="968.0" prefWidth="1838.0" style="-fx-background-color: #365142;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.LeonMart.superMarket.controller.MonthlyReportFormController">
+<AnchorPane fx:id="apnMain" prefHeight="968.0" prefWidth="1838.0" style="-fx-background-color: #e1e1e1;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.LeonMart.superMarket.controller.MonthlyReportFormController">
    <children>
       <Label layoutX="524.0" layoutY="484.0" text="Monthly" textFill="#9a8383">
          <font>
@@ -18,5 +22,14 @@
             <Image url="@assests/images/down.png" />
          </image>
       </ImageView>
+      <LineChart fx:id="crtMonthly" layoutX="20.0" layoutY="174.0" prefHeight="704.0" prefWidth="1854.0" stylesheets="@../../../../../../../../First%20Sem/fx/DilcoPlantation/src/asserts/styleSheets/incomeChart.css" title="Monthly Income">
+         <xAxis>
+            <CategoryAxis label="Month" side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis label="Revenue " prefHeight="536.0" prefWidth="109.0" side="LEFT" />
+         </yAxis>
+      </LineChart>
+      <JFXTextField fx:id="txtSearchMonth" labelFloat="true" layoutX="475.0" layoutY="84.0" onKeyReleased="#searchMonthKeyReleased" prefHeight="31.0" prefWidth="265.0" promptText="Search Month" />
    </children>
 </AnchorPane>

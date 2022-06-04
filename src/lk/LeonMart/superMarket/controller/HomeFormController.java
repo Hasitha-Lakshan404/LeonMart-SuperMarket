@@ -2,11 +2,15 @@ package lk.LeonMart.superMarket.controller;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.Window;
 
 import java.io.IOException;
 
@@ -26,6 +30,7 @@ public class HomeFormController {
 
     public JFXButton btnAllOrder;
     public JFXButton btnDashboard;
+    public AnchorPane apnMain;
 
 
     String userNameShow;
@@ -78,6 +83,18 @@ public class HomeFormController {
                 lblHomeTitleShow.setText("Reports");
 
             } else if (btn.getId().equals("SettingsButton")) {
+
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/LoginForm.fxml"));
+                Parent parent= loader.load();
+                Stage stage =new Stage(StageStyle.DECORATED);
+                stage.setTitle("Login");
+                stage.setScene(new Scene(parent));
+                stage.show();
+
+                Stage stage1 = (Stage) btnCustomer.getScene().getWindow();
+                stage1.close();
+
 
             }else if (btn.getId().equals("dashBoardButton")) {
                 setUI("DashboardForm");
