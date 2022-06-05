@@ -8,6 +8,8 @@
 package lk.LeonMart.superMarket.view.tdm;
 
 
+import java.time.LocalDate;
+
 public class CustomTM {
     private String itemCode;
     private String description;
@@ -15,15 +17,161 @@ public class CustomTM {
     private double unitPrice;
     private int orderQty;
 
+    private int qtyOnHand;
+    private double discount;
+    private int qty;
+    private double total;
+    private String OrderId;
+    private LocalDate orderDate;
+    private String customerId;
+    private String cusId;
+    private String cusTitle;
+    private String cusName;
+    private String cusAddress;
+    private String city;
+    private String province;
+    private String postalCode;
+
     public CustomTM() {
     }
 
-    public CustomTM (String itemCode, String description, String packSize, double unitPrice, int orderQty) {
+    //for MostMovable
+    public CustomTM(String itemCode, String description, String packSize, double unitPrice, int orderQty) {
         this.itemCode = itemCode;
         this.description = description;
         this.packSize = packSize;
         this.unitPrice = unitPrice;
         this.orderQty = orderQty;
+    }
+
+    //for DailyIncome
+    public CustomTM( LocalDate orderDate,String itemCode, String description, double unitPrice, int orderQty, double discount,double total) {
+        this.itemCode = itemCode;
+        this.description = description;
+        this.unitPrice = unitPrice;
+        this.orderQty = orderQty;
+        this.discount=discount;
+        this.total = total;
+        this.orderDate = orderDate;
+    }
+
+    //for Home Customer data
+    public CustomTM( String cusId,String itemCode, String description) {
+        this.cusId = cusId;
+        this.itemCode = itemCode;
+        this.description = description;
+    }
+
+    public int getQtyOnHand() {
+        return qtyOnHand;
+    }
+
+    public void setQtyOnHand(int qtyOnHand) {
+        this.qtyOnHand = qtyOnHand;
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public String getOrderId() {
+        return OrderId;
+    }
+
+    public void setOrderId(String orderId) {
+        OrderId = orderId;
+    }
+
+    public LocalDate getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(LocalDate orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getCusId() {
+        return cusId;
+    }
+
+    public void setCusId(String cusId) {
+        this.cusId = cusId;
+    }
+
+    public String getCusTitle() {
+        return cusTitle;
+    }
+
+    public void setCusTitle(String cusTitle) {
+        this.cusTitle = cusTitle;
+    }
+
+    public String getCusName() {
+        return cusName;
+    }
+
+    public void setCusName(String cusName) {
+        this.cusName = cusName;
+    }
+
+    public String getCusAddress() {
+        return cusAddress;
+    }
+
+    public void setCusAddress(String cusAddress) {
+        this.cusAddress = cusAddress;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 
     public String getItemCode() {

@@ -13,7 +13,7 @@
 
 <AnchorPane fx:id="apnMain" prefHeight="968.0" prefWidth="1838.0" style="-fx-background-color: #e1e1e1;" stylesheets="@assests/style/Tables.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.LeonMart.superMarket.controller.MainReportFormController">
    <children>
-      <TableView fx:id="tblMostItem" layoutX="26.0" layoutY="499.0" prefHeight="377.0" prefWidth="857.0">
+      <TableView id="effect" fx:id="tblMostItem" layoutX="26.0" layoutY="499.0" prefHeight="377.0" prefWidth="857.0">
          <columns>
             <TableColumn prefWidth="161.0" text="Item Code" />
             <TableColumn prefWidth="169.0" text="Description" />
@@ -22,7 +22,7 @@
             <TableColumn prefWidth="172.0" text="QTY" />
          </columns>
       </TableView>
-      <TableView fx:id="tblLeastItem" layoutX="940.0" layoutY="499.0" prefHeight="377.0" prefWidth="857.0">
+      <TableView id="effect" fx:id="tblLeastItem" layoutX="940.0" layoutY="499.0" prefHeight="377.0" prefWidth="857.0">
          <columns>
             <TableColumn prefWidth="161.0" text="Item Code" />
             <TableColumn prefWidth="169.0" text="Description" />

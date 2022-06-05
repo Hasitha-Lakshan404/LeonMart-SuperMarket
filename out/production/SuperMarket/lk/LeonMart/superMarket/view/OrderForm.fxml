@@ -15,9 +15,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="968.0" prefWidth="1838.0" style="-fx-background-color: #e1e1e1;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.LeonMart.superMarket.controller.OrderFormController">
+<AnchorPane prefHeight="968.0" prefWidth="1838.0" style="-fx-background-color: #e1e1e1;" stylesheets="@assests/style/Tables.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.LeonMart.superMarket.controller.OrderFormController">
    <children>
-      <TableView fx:id="tblOrderCart" layoutX="277.0" layoutY="492.0" prefHeight="377.0" prefWidth="1187.0">
+      <TableView id="effect" fx:id="tblOrderCart" layoutX="277.0" layoutY="492.0" prefHeight="377.0" prefWidth="1187.0">
          <columns>
             <TableColumn prefWidth="161.0" text="Item Code" />
             <TableColumn prefWidth="285.0" text="Description" />
@@ -34,7 +34,7 @@
             </ContextMenu>
          </contextMenu>
       </TableView>
-      <JFXButton fx:id="btnAddToCart" layoutX="1131.0" layoutY="393.0" onAction="#CustomerAddToCartOnAction" prefHeight="50.0" prefWidth="212.0" ripplerFill="#39c2ae" style="-fx-background-color: #52d0f7;" text="    Add to Cart">
+      <JFXButton id="effect" fx:id="btnAddToCart" layoutX="1131.0" layoutY="393.0" onAction="#CustomerAddToCartOnAction" prefHeight="50.0" prefWidth="212.0" ripplerFill="#39c2ae" style="-fx-background-color: #52d0f7;" text="    Add to Cart">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -50,7 +50,7 @@
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="57.0" layoutX="417.0" layoutY="255.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="261.0" />
-      <JFXTextField fx:id="txtItemDescription" layoutX="432.0" layoutY="268.0" prefHeight="31.0" prefWidth="231.0" promptText="C-01" />
+      <JFXTextField fx:id="txtItemDescription" layoutX="432.0" layoutY="268.0" prefHeight="31.0" prefWidth="231.0" promptText="ex :C00-001" />
       <Label layoutX="86.0" layoutY="224.0" text="Item">
          <font>
             <Font name="Bodoni MT" size="19.0" />
@@ -71,35 +71,35 @@
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="57.0" layoutX="450.0" layoutY="80.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="261.0" />
-      <JFXTextField fx:id="txtCusName" layoutX="465.0" layoutY="92.0" prefHeight="31.0" prefWidth="231.0" promptText="Sample Name" />
+      <JFXTextField fx:id="txtCusName" layoutX="465.0" layoutY="92.0" prefHeight="31.0" prefWidth="231.0" promptText="ex :Sample Name" />
       <Label layoutX="813.0" layoutY="49.0" text="Address">
          <font>
             <Font name="Bodoni MT" size="19.0" />
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="57.0" layoutX="811.0" layoutY="80.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="261.0" />
-      <JFXTextField fx:id="txtAddress" layoutX="826.0" layoutY="92.0" prefHeight="31.0" prefWidth="231.0" promptText="Address" />
+      <JFXTextField fx:id="txtAddress" layoutX="826.0" layoutY="92.0" prefHeight="31.0" prefWidth="231.0" promptText="ex: Address" />
       <Label layoutX="728.0" layoutY="224.0" text="Unit Price">
          <font>
             <Font name="Bodoni MT" size="19.0" />
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="57.0" layoutX="726.0" layoutY="255.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="261.0" />
-      <JFXTextField fx:id="txtUnitPrice" layoutX="773.0" layoutY="268.0" prefHeight="31.0" prefWidth="199.0" promptText="145" />
+      <JFXTextField fx:id="txtUnitPrice" layoutX="773.0" layoutY="268.0" prefHeight="31.0" prefWidth="199.0" />
       <Label layoutX="1049.0" layoutY="224.0" text="Qty on hand">
          <font>
             <Font name="Bodoni MT" size="19.0" />
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="59.0" layoutX="1045.0" layoutY="255.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="148.0" />
-      <JFXTextField fx:id="txtQtyOnHand" layoutX="1061.0" layoutY="268.0" prefHeight="31.0" prefWidth="120.0" promptText="00" />
+      <JFXTextField fx:id="txtQtyOnHand" layoutX="1061.0" layoutY="268.0" prefHeight="31.0" prefWidth="120.0" promptText="ex: 00" />
       <Label layoutX="1285.0" layoutY="224.0" text="Discount">
          <font>
             <Font name="Bodoni MT" size="19.0" />
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="59.0" layoutX="1281.0" layoutY="255.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="146.0" />
-      <JFXTextField fx:id="txtDiscount" alignment="CENTER_RIGHT" layoutX="1297.0" layoutY="268.0" prefHeight="31.0" prefWidth="76.0" promptText="00" text="15" />
+      <JFXTextField fx:id="txtDiscount" alignment="CENTER_RIGHT" layoutX="1297.0" layoutY="268.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="76.0" promptText="ex :00" />
       <Label layoutX="736.0" layoutY="268.0" text="Rs :">
          <font>
             <Font size="19.0" />
@@ -127,7 +127,7 @@
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="59.0" layoutX="1502.0" layoutY="254.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="164.0" />
-      <JFXTextField fx:id="txtQty" layoutX="1518.0" layoutY="267.0" prefHeight="31.0" prefWidth="120.0" promptText="00" />
+      <JFXTextField fx:id="txtQty" layoutX="1518.0" layoutY="267.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="120.0" promptText="00" />
       <Label layoutX="1441.0" layoutY="28.0" text="Order Id :">
          <font>
             <Font name="Bodoni MT Bold" size="33.0" />

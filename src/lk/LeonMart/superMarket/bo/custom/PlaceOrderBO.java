@@ -7,6 +7,7 @@
 
 package lk.LeonMart.superMarket.bo.custom;
 
+import lk.LeonMart.superMarket.bo.SuperBO;
 import lk.LeonMart.superMarket.dto.CustomerDTO;
 import lk.LeonMart.superMarket.dto.ItemDTO;
 import lk.LeonMart.superMarket.dto.OrderDTO;
@@ -14,7 +15,7 @@ import lk.LeonMart.superMarket.dto.OrderDTO;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public interface PlaceOrderBO {
+public interface PlaceOrderBO extends SuperBO {
     boolean purchaseOrder(OrderDTO dto) throws SQLException, ClassNotFoundException;
 
     CustomerDTO searchCustomer(String id) throws SQLException, ClassNotFoundException;

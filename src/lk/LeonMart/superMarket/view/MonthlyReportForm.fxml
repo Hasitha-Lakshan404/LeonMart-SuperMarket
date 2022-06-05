@@ -4,19 +4,12 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="apnMain" prefHeight="968.0" prefWidth="1838.0" style="-fx-background-color: #e1e1e1;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.LeonMart.superMarket.controller.MonthlyReportFormController">
    <children>
-      <Label layoutX="524.0" layoutY="484.0" text="Monthly" textFill="#9a8383">
-         <font>
-            <Font size="77.0" />
-         </font>
-      </Label>
       <ImageView fitHeight="47.0" fitWidth="45.0" layoutX="42.0" layoutY="39.0" onMouseClicked="#backMouseClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@assests/images/down.png" />

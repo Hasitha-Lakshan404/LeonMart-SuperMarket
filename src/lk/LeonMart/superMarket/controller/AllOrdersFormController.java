@@ -19,10 +19,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import lk.LeonMart.superMarket.bo.BOFactory;
 import lk.LeonMart.superMarket.bo.custom.OrderBO;
 import lk.LeonMart.superMarket.bo.custom.OrderDetailBO;
-import lk.LeonMart.superMarket.bo.custom.impl.OrderBOImpl;
-import lk.LeonMart.superMarket.bo.custom.impl.OrderDetailBOImpl;
 import lk.LeonMart.superMarket.dto.OrderDTO;
 import lk.LeonMart.superMarket.dto.OrderDetailDTO;
 import lk.LeonMart.superMarket.view.tdm.OrderDetailsTM;
@@ -46,8 +45,9 @@ public class AllOrdersFormController {
     public TextField txtSearchOrder;
     public TextField txtSearchOrderDetails;
 
-    OrderBO orderBO = new OrderBOImpl();
-    OrderDetailBO orderDetailBO = new OrderDetailBOImpl();
+    OrderBO orderBO = (OrderBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ORDER);
+    OrderDetailBO orderDetailBO = (OrderDetailBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ORDER_DETAIL);
+
 
     public void initialize() throws SQLException, ClassNotFoundException {
 
@@ -117,7 +117,7 @@ public class AllOrdersFormController {
                         od.getOrderId(),
                         od.getOrderDate(),
                         od.getCustomerId()
-                        ));
+                ));
 
             }
 

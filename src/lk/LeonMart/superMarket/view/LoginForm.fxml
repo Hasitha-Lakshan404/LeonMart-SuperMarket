@@ -15,13 +15,8 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="apnMainPane" prefHeight="700.0" prefWidth="650.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.LeonMart.superMarket.controller.LoginFormController">
+<AnchorPane fx:id="apnMainPane" prefHeight="700.0" prefWidth="650.0" style="-fx-background-color: WHITE;" stylesheets="@assests/style/Tables.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.LeonMart.superMarket.controller.LoginFormController">
    <children>
-      <ImageView fitHeight="276.0" fitWidth="360.0" layoutX="289.0" layoutY="3.0" pickOnBounds="true">
-         <image>
-            <Image url="@assests/images/lockgif.gif" />
-         </image>
-      </ImageView>
       <Pane layoutX="37.0" layoutY="190.0" prefHeight="472.0" prefWidth="352.0" style="-fx-background-color: #91f5fa; -fx-background-radius: 10px 100px / 120px;">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="48.0" layoutX="22.0" layoutY="77.0" stroke="BLACK" strokeType="INSIDE" width="288.0">
@@ -73,7 +68,7 @@
             <Line endX="100.0" layoutX="156.0" layoutY="221.0" startX="100.0" startY="-33.0" />
             <Line endX="100.0" layoutX="157.0" layoutY="338.0" startX="100.0" startY="-33.0" />
          </children></Pane>
-      <Label layoutX="253.0" layoutY="43.0" prefHeight="47.0" prefWidth="169.0" text="Log In">
+      <Label layoutX="250.0" layoutY="67.0" prefHeight="63.0" prefWidth="149.0" text="Log In">
          <font>
             <Font name="Poor Richard" size="52.0" />
          </font>
@@ -86,23 +81,26 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <JFXComboBox fx:id="cmbType" layoutX="81.0" layoutY="275.0" prefHeight="31.0" prefWidth="174.0" promptText="User Type" />
-      <JFXTextField labelFloat="true" layoutX="81.0" layoutY="367.0" prefHeight="31.0" prefWidth="199.0" promptText="User Name" />
-      <JFXButton layoutX="142.0" layoutY="578.0" onAction="#logInOnAction" prefHeight="48.0" prefWidth="149.0" text="Log In" />
-      <JFXPasswordField labelFloat="true" layoutX="81.0" layoutY="483.0" prefHeight="31.0" prefWidth="199.0" promptText="Password" />
-      <ImageView fitHeight="154.0" fitWidth="192.0" layoutX="6.0" layoutY="52.0" pickOnBounds="true">
-         <image>
-            <Image url="@assests/images/cartgif.gif" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="164.0" fitWidth="158.0" layoutX="318.0" layoutY="513.0" pickOnBounds="true">
+      <JFXComboBox fx:id="cmbType" layoutX="81.0" layoutY="275.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="174.0" promptText="User Type" />
+      <JFXTextField fx:id="txtUserName" labelFloat="true" layoutX="81.0" layoutY="367.0" prefHeight="31.0" prefWidth="199.0" promptText="User Name" />
+      <JFXButton id="effect" fx:id="btnLogin" layoutX="142.0" layoutY="578.0" onAction="#logInOnAction" prefHeight="48.0" prefWidth="149.0" style="-fx-background-color: #6d72cf;" text="Log In" textFill="#deeed8">
+         <font>
+            <Font name="Bell MT" size="19.0" />
+         </font></JFXButton>
+      <JFXPasswordField fx:id="pwdPassword" labelFloat="true" layoutX="81.0" layoutY="483.0" onKeyReleased="#passwordFieldValidationOnAction" prefHeight="31.0" prefWidth="199.0" promptText="Password" />
+      <ImageView fitHeight="164.0" fitWidth="158.0" layoutX="31.0" layoutY="55.0" pickOnBounds="true">
          <image>
             <Image url="@assests/images/bukgif.gif" />
          </image>
       </ImageView>
-      <ImageView fitHeight="259.0" fitWidth="301.0" layoutX="337.0" layoutY="240.0" pickOnBounds="true">
+      <ImageView fitHeight="259.0" fitWidth="301.0" layoutX="338.0" layoutY="305.0" pickOnBounds="true">
          <image>
             <Image url="@assests/images/userpng.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="41.0" fitWidth="48.0" layoutX="292.0" layoutY="39.0" pickOnBounds="true">
+         <image>
+            <Image url="@assests/images/loock.png" />
          </image>
       </ImageView>
    </children>

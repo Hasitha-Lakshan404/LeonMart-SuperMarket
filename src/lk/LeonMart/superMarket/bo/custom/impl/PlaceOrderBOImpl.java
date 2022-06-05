@@ -9,6 +9,7 @@ package lk.LeonMart.superMarket.bo.custom.impl;
 
 
 import lk.LeonMart.superMarket.bo.custom.PlaceOrderBO;
+import lk.LeonMart.superMarket.dao.DAOFactory;
 import lk.LeonMart.superMarket.dao.custom.CustomerDAO;
 import lk.LeonMart.superMarket.dao.custom.ItemDAO;
 import lk.LeonMart.superMarket.dao.custom.OrderDAO;
@@ -33,10 +34,11 @@ import java.util.ArrayList;
 
 public class PlaceOrderBOImpl implements PlaceOrderBO {
 
-    private final OrderDAO orderDAO = new OrderDAOImpl();
-    OrderDetailDAO orderDetailDAO = new OrderDetailDAOImpl();
-    ItemDAO itemDAO = new ItemDAOImpl();
-    CustomerDAO customerDAO = new CustomerDAOImpl();
+
+    private final CustomerDAO customerDAO = (CustomerDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.CUSTOMER);
+    private final ItemDAO itemDAO = (ItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ITEM);
+    private final OrderDAO orderDAO = (OrderDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ORDER);
+    private final OrderDetailDAO orderDetailDAO = (OrderDetailDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ORDERDETAILS);
 
 
     @Override

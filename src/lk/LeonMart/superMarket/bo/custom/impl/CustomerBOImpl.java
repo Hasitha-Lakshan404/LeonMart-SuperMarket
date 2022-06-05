@@ -11,6 +11,7 @@ package lk.LeonMart.superMarket.bo.custom.impl;
 import lk.LeonMart.superMarket.bo.custom.CustomerBO;
 import lk.LeonMart.superMarket.dao.DAOFactory;
 import lk.LeonMart.superMarket.dao.custom.CustomerDAO;
+import lk.LeonMart.superMarket.dao.custom.QueryDAO;
 import lk.LeonMart.superMarket.dao.custom.impl.CustomerDAOImpl;
 import lk.LeonMart.superMarket.dto.CustomerDTO;
 import lk.LeonMart.superMarket.entity.Customer;
@@ -19,8 +20,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CustomerBOImpl implements CustomerBO {
-
-    CustomerDAO customerDAO = new CustomerDAOImpl();
+    private final CustomerDAO customerDAO = (CustomerDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.CUSTOMER);
 
     @Override
     public ArrayList<CustomerDTO> getAllCustomers() throws SQLException, ClassNotFoundException {

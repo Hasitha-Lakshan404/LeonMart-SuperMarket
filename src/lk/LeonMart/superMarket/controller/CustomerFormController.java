@@ -12,13 +12,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import lk.LeonMart.superMarket.bo.BOFactory;
 import lk.LeonMart.superMarket.bo.custom.CustomerBO;
-import lk.LeonMart.superMarket.bo.custom.impl.CustomerBOImpl;
 import lk.LeonMart.superMarket.dto.CustomerDTO;
+import lk.LeonMart.superMarket.util.ValidationUtil;
 import lk.LeonMart.superMarket.view.tdm.CustomerTM;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.regex.Pattern;
 
 public class CustomerFormController {
 
@@ -34,10 +37,19 @@ public class CustomerFormController {
     public TextField txtSearchCustomer;
 
 
-    CustomerBO customerBO = new CustomerBOImpl();
+    CustomerBO customerBO = (CustomerBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.CUSTOMER);
+
+    LinkedHashMap<JFXTextField, Pattern> map = new LinkedHashMap<>();
+
+    Pattern customerNamePattern = Pattern.compile("^[A-z ]{4,25}$");
+    Pattern addressPattern = Pattern.compile("^[A-z0-9 ,/]{4,20}$");
+    Pattern cityPattern = Pattern.compile("^[A-z ]{4,25}$");
+    Pattern provincePattern = Pattern.compile("^[A-z ]{4,25}$");
+    Pattern postalCode = Pattern.compile("^[A-z0-9 ,/]{4,20}$");
+
 
     public void initialize() throws SQLException, ClassNotFoundException {
-
+        storeValidations();
         generateId();
         cmbCusTitle.getItems().addAll("Mr", "Mis", "Ms");
 
@@ -50,6 +62,15 @@ public class CustomerFormController {
         tblCustomer.getColumns().get(6).setCellValueFactory(new PropertyValueFactory<>("postalCode"));
 
         loadAllCustomers();
+    }
+
+    private void storeValidations() {
+        map.put(txtCusName, customerNamePattern);
+        map.put(txtCusAddress, addressPattern);
+        map.put(txtCusCity, cityPattern);
+        map.put(txtProvince, provincePattern);
+        map.put(txtPostalCode, postalCode);
+
     }
 
     private void loadAllCustomers() throws SQLException, ClassNotFoundException {
@@ -179,6 +200,18 @@ public class CustomerFormController {
             tblCustomer.getItems().addAll(oBCustomerTMS);
             tblCustomer.refresh();
         }
+    }
 
+    public void textFieldValidationOnAction(KeyEvent keyEvent) {
+        Object response = ValidationUtil.validateJFXTextField(map, btnAdd);
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            if (response instanceof JFXTextField) {
+                JFXTextField errorText = (JFXTextField) response;
+                errorText.requestFocus();
+            } else if (response instanceof Boolean) {
+
+            }
+
+        }
     }
 }

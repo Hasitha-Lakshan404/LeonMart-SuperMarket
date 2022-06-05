@@ -28,6 +28,15 @@ public class ItemTM {
         this.discount = discount;
     }
 
+    //for Home
+    public ItemTM(String itemCode, String description,double unitPrice) {
+        this.itemCode = itemCode;
+        this.description = description;
+        this.unitPrice=unitPrice;
+    }
+
+
+
     public String getItemCode() {
         return itemCode;
     }

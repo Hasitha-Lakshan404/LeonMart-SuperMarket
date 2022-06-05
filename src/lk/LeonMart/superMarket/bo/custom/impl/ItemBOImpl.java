@@ -10,6 +10,7 @@ package lk.LeonMart.superMarket.bo.custom.impl;
 
 import lk.LeonMart.superMarket.bo.custom.ItemBO;
 import lk.LeonMart.superMarket.dao.CrudUtil;
+import lk.LeonMart.superMarket.dao.DAOFactory;
 import lk.LeonMart.superMarket.dao.custom.ItemDAO;
 import lk.LeonMart.superMarket.dao.custom.impl.ItemDAOImpl;
 import lk.LeonMart.superMarket.dto.CustomerDTO;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 
 public class ItemBOImpl implements ItemBO {
 
-    ItemDAO itemDAO=new ItemDAOImpl();
+    private final ItemDAO itemDAO = (ItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ITEM);
 
     @Override
     public ArrayList<ItemDTO> getAllItems() throws SQLException, ClassNotFoundException {
@@ -70,5 +71,24 @@ public class ItemBOImpl implements ItemBO {
     @Override
     public String generateNewItemID() throws SQLException, ClassNotFoundException {
         return itemDAO.generateNewId();
+    }
+
+    @Override
+    public ArrayList<ItemDTO> searchItems(String enteredText) throws SQLException, ClassNotFoundException {
+
+        ArrayList<Item> items = itemDAO.searchItems(enteredText);
+        ArrayList<ItemDTO> itDto=new ArrayList<>();
+
+        for (Item item : items) {
+            itDto.add(new ItemDTO(
+                    item.getItemCode(),
+                    item.getDescription(),
+                    item.getPackSize(),
+                    item.getUnitPrice(),
+                    item.getQtyOnHand(),
+                    item.getDiscount()
+            ));
+        }
+        return itDto;
     }
 }

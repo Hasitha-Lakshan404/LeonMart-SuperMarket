@@ -16,6 +16,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.LeonMart.superMarket.bo.BOFactory;
+import lk.LeonMart.superMarket.bo.custom.DashBoardBO;
 import lk.LeonMart.superMarket.bo.custom.MainReportBO;
 import lk.LeonMart.superMarket.bo.custom.impl.MainReportBOImpl;
 import lk.LeonMart.superMarket.dto.CustomDTO;
@@ -32,7 +34,8 @@ public class MainReportFormController {
     public AnchorPane apnMain;
     public JFXButton btnAnnually;
 
-    MainReportBO mainReportBO=new MainReportBOImpl();
+    MainReportBO mainReportBO = (MainReportBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.MAIN_REPORT);
+
 
     public void initialize() throws SQLException, ClassNotFoundException {
 

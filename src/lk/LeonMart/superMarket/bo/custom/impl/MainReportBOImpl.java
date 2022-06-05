@@ -9,6 +9,7 @@ package lk.LeonMart.superMarket.bo.custom.impl;
 
 
 import lk.LeonMart.superMarket.bo.custom.MainReportBO;
+import lk.LeonMart.superMarket.dao.DAOFactory;
 import lk.LeonMart.superMarket.dao.custom.QueryDAO;
 import lk.LeonMart.superMarket.dao.custom.impl.QueryDAOImpl;
 import lk.LeonMart.superMarket.dto.CustomDTO;
@@ -18,7 +19,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class MainReportBOImpl implements MainReportBO {
-    QueryDAO customerDAO = new QueryDAOImpl();
+
+    private final QueryDAO customerDAO = (QueryDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.JOINQUERY);
+
 
     @Override
     public ArrayList<CustomDTO> MostMovableItem() throws SQLException, ClassNotFoundException {

@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
@@ -17,14 +18,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="968.0" prefWidth="1838.0" style="-fx-background-color: #e1e1e1;" stylesheets="@assests/style/MainTheam.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.LeonMart.superMarket.controller.CustomerFormController">
+<AnchorPane prefHeight="968.0" prefWidth="1838.0" style="-fx-background-color: #e1e1e1;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.LeonMart.superMarket.controller.CustomerFormController">
    <children>
-      <ImageView fitHeight="968.0" fitWidth="1838.0" layoutX="13.0" layoutY="-1.0" pickOnBounds="true">
-         <image>
-            <Image url="@assests/images/whiteB.jpg" />
-         </image>
-      </ImageView>
-      <TableView fx:id="tblCustomer" layoutX="65.0" layoutY="548.0" prefHeight="377.0" prefWidth="1741.0">
+      <TableView id="effect" fx:id="tblCustomer" layoutX="65.0" layoutY="548.0" prefHeight="377.0" prefWidth="1741.0">
         <columns>
           <TableColumn prefWidth="161.0" text="Customer Id" />
           <TableColumn prefWidth="128.0" text="Customer Title" />
@@ -48,52 +44,52 @@
             <Font name="Bodoni MT" size="19.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="57.0" layoutX="63.0" layoutY="64.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="261.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="63.0" layoutY="64.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
       <JFXTextField fx:id="txtCusId" layoutX="78.0" layoutY="76.0" prefHeight="31.0" prefWidth="231.0" promptText="C-01" />
       <Label layoutX="68.0" layoutY="169.0" text="Customer Title ">
          <font>
             <Font name="Bodoni MT" size="19.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="57.0" layoutX="66.0" layoutY="200.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="261.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="66.0" layoutY="200.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
       <Label layoutX="70.0" layoutY="310.0" text="Name">
          <font>
             <Font name="Bodoni MT" size="19.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="57.0" layoutX="66.0" layoutY="341.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="261.0" />
-      <JFXTextField fx:id="txtCusName" layoutX="81.0" layoutY="353.0" prefHeight="31.0" prefWidth="231.0" promptText="Hasitha Lakshan" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="66.0" layoutY="341.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
+      <JFXTextField fx:id="txtCusName" layoutX="81.0" layoutY="353.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="231.0" promptText="Hasitha Lakshan" />
       <Label layoutX="434.0" layoutY="29.0" text="Address">
          <font>
             <Font name="Bodoni MT" size="19.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="57.0" layoutX="430.0" layoutY="63.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="261.0" />
-      <JFXTextField fx:id="txtCusAddress" layoutX="445.0" layoutY="75.0" prefHeight="31.0" prefWidth="231.0" promptText="No:00" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="430.0" layoutY="63.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
+      <JFXTextField fx:id="txtCusAddress" layoutX="445.0" layoutY="75.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="231.0" promptText="No:00" />
       <Label layoutX="431.0" layoutY="171.0" text="City">
          <font>
             <Font name="Bodoni MT" size="19.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="57.0" layoutX="427.0" layoutY="202.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="261.0" />
-      <JFXTextField fx:id="txtCusCity" layoutX="442.0" layoutY="214.0" prefHeight="31.0" prefWidth="231.0" promptText="Bandaragama" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="427.0" layoutY="202.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="261.0" />
+      <JFXTextField fx:id="txtCusCity" layoutX="442.0" layoutY="214.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="231.0" promptText="Bandaragama" />
       <Label layoutX="808.0" layoutY="33.0" text="Postal Code">
          <font>
             <Font name="Bodoni MT" size="19.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="57.0" layoutX="804.0" layoutY="64.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="261.0" />
-      <JFXTextField fx:id="txtPostalCode" layoutX="819.0" layoutY="76.0" prefHeight="31.0" prefWidth="231.0" promptText="310154" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="804.0" layoutY="64.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
+      <JFXTextField fx:id="txtPostalCode" layoutX="819.0" layoutY="76.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="231.0" promptText="310154" />
       <Separator layoutX="70.0" layoutY="149.0" prefHeight="6.0" prefWidth="1723.0" />
       <Label layoutX="430.0" layoutY="309.0" text="Province">
          <font>
             <Font name="Bodoni MT" size="19.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="57.0" layoutX="426.0" layoutY="340.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="261.0" />
-      <JFXTextField fx:id="txtProvince" layoutX="441.0" layoutY="352.0" prefHeight="31.0" prefWidth="231.0" promptText="Western" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="57.0" layoutX="426.0" layoutY="340.0" stroke="#3ac3ae" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
+      <JFXTextField fx:id="txtProvince" layoutX="441.0" layoutY="352.0" onKeyReleased="#textFieldValidationOnAction" prefHeight="31.0" prefWidth="231.0" promptText="Western" />
       <JFXComboBox fx:id="cmbCusTitle" layoutX="81.0" layoutY="213.0" prefHeight="31.0" prefWidth="231.0" promptText="MR" />
-      <JFXButton fx:id="btnAdd" layoutX="803.0" layoutY="345.0" onAction="#CustomerAddOnAction" prefHeight="50.0" prefWidth="212.0" ripplerFill="#39c2ae" style="-fx-background-color: #52d0f7;" text="Add Customer" />
+      <JFXButton id="effect" fx:id="btnAdd" layoutX="803.0" layoutY="345.0" onAction="#CustomerAddOnAction" prefHeight="50.0" prefWidth="212.0" ripplerFill="#39c2ae" style="-fx-background-color: #52d0f7;" text="Add Customer" />
       <JFXButton id="cusButtonText" layoutX="1102.0" layoutY="345.0" onAction="#CustomerClearOnAction" prefHeight="50.0" prefWidth="212.0" ripplerFill="#39c2ae" style="-fx-background-color: #f75e5e;" text="Clear" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="42.0" layoutX="387.0" layoutY="484.0" stroke="#3ac3ae" strokeType="OUTSIDE" width="1139.0" />
       <ImageView fitHeight="25.0" fitWidth="31.0" layoutX="400.0" layoutY="492.0" pickOnBounds="true" preserveRatio="true">
@@ -106,4 +102,8 @@
       <Separator layoutX="70.0" layoutY="282.0" prefHeight="6.0" prefWidth="1723.0" />
       <Separator layoutX="70.0" layoutY="446.0" prefHeight="6.0" prefWidth="1723.0" />
    </children>
+   <stylesheets>
+      <URL value="@assests/style/MainTheam.css" />
+      <URL value="@assests/style/Tables.css" />
+   </stylesheets>
 </AnchorPane>

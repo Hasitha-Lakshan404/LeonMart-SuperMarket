@@ -9,6 +9,8 @@ package lk.LeonMart.superMarket.bo.custom.impl;
 
 
 import lk.LeonMart.superMarket.bo.custom.OrderDetailBO;
+import lk.LeonMart.superMarket.dao.DAOFactory;
+import lk.LeonMart.superMarket.dao.custom.OrderDAO;
 import lk.LeonMart.superMarket.dao.custom.OrderDetailDAO;
 import lk.LeonMart.superMarket.dao.custom.impl.OrderDetailDAOImpl;
 import lk.LeonMart.superMarket.dto.CustomerDTO;
@@ -20,7 +22,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class OrderDetailBOImpl implements OrderDetailBO {
-    OrderDetailDAO orderDetailDAO = new OrderDetailDAOImpl();
+
+    private final OrderDetailDAO orderDetailDAO = (OrderDetailDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ORDERDETAILS);
 
     @Override
     public ArrayList<OrderDetailDTO> getAllOrderDetails() throws SQLException, ClassNotFoundException {

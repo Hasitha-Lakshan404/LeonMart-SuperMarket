@@ -18,19 +18,26 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import lk.LeonMart.superMarket.bo.BOFactory;
+import lk.LeonMart.superMarket.bo.custom.MonthlyIncomeReportBO;
 import lk.LeonMart.superMarket.bo.custom.PlaceOrderBO;
 import lk.LeonMart.superMarket.bo.custom.impl.PlaceOrderBOImpl;
 import lk.LeonMart.superMarket.dto.CustomerDTO;
 import lk.LeonMart.superMarket.dto.ItemDTO;
 import lk.LeonMart.superMarket.dto.OrderDTO;
 import lk.LeonMart.superMarket.dto.OrderDetailDTO;
+import lk.LeonMart.superMarket.util.ValidationUtil;
 import lk.LeonMart.superMarket.view.tdm.OrderDetailsTM;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class OrderFormController {
 
@@ -49,12 +56,20 @@ public class OrderFormController {
     public Label lblOrderId;
     public Label lblDate;
 
-    PlaceOrderBO placeOrderBO = new PlaceOrderBOImpl();
+
+    PlaceOrderBO placeOrderBO = (PlaceOrderBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.PLACE_ORDER);
+
+
+    LinkedHashMap<JFXTextField, Pattern> ord = new LinkedHashMap<>();
+    Pattern ItemDiscountPattern = Pattern.compile("^[0-9.]{1,5}$");
+    Pattern ItemQtyPattern = Pattern.compile("^[0-9]{1,10}$");
 
     ObservableList<OrderDetailsTM> obOrderDetailTmList = FXCollections.observableArrayList();
     private String orderId;
 
     public void initialize() throws SQLException, ClassNotFoundException {
+
+        storeValidations();
 
         tblOrderCart.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("itemCode"));
         tblOrderCart.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -67,7 +82,6 @@ public class OrderFormController {
         orderId = generateNewOrderId();
         lblOrderId.setText(orderId);
         lblDate.setText(LocalDate.now().toString());
-//        btnPlaceOrder.setDisable(true);
         txtCusName.setFocusTraversable(false);
         txtCusName.setEditable(false);
         txtAddress.setFocusTraversable(false);
@@ -78,9 +92,7 @@ public class OrderFormController {
         txtUnitPrice.setEditable(false);
         txtQtyOnHand.setFocusTraversable(false);
         txtQtyOnHand.setEditable(false);
-//        txtQty.setOnAction(event -> btnSave.fire());
-//        txtQty.setEditable(false);
-//        btnSave.setDisable(true);
+
 
         getItemCode();
         getCustomerId();
@@ -115,9 +127,8 @@ public class OrderFormController {
                     txtDiscount.setText(String.valueOf(itemDTO.getDiscount()));
 
                     if (obOrderDetailTmList != null) {
-                        //for - qty
-                    }
 
+                    }
 
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -128,6 +139,12 @@ public class OrderFormController {
 
             }
         });
+    }
+
+    private void storeValidations() {
+        btnAddToCart.setDisable(true);
+        ord.put(txtDiscount, ItemDiscountPattern);
+        ord.put(txtQty, ItemQtyPattern);
     }
 
     private void getCustomerId() {
@@ -182,11 +199,14 @@ public class OrderFormController {
 
         }
 
+        //=====================================================================================
         String itemCode = cmbItemCode.getSelectionModel().getSelectedItem();
-        String description = txtItemDescription.getText();
+        double disc = (Double.parseDouble(txtDiscount.getText())/100);
+
         double unitPrice = Double.parseDouble(txtUnitPrice.getText());
         int qty = Integer.parseInt(txtQty.getText());
-        double total = unitPrice * qty;
+        double tempTotal=(unitPrice*qty)*disc;
+        double total = (unitPrice * qty)-tempTotal;
 
 
         if (isExist(itemCode)) {
@@ -194,10 +214,12 @@ public class OrderFormController {
                 if (orderDetailsTM.getItemCode().equals(cmbItemCode.getValue())) {
                     orderDetailsTM.setQty(orderDetailsTM.getQty() + qty);
                     orderDetailsTM.setTotal(orderDetailsTM.getTotal() + total);
+                    orderDetailsTM.setDiscount(orderDetailsTM.getDiscount()+tempTotal);
 
                 }
             }
             tblOrderCart.refresh();
+            clearText();
         } else {
 
             //Add data to the Observable List
@@ -207,7 +229,7 @@ public class OrderFormController {
                     txtItemDescription.getText(),
                     qty,
                     unitPrice,
-                    Double.parseDouble(txtDiscount.getText()),
+                    tempTotal,
                     total);
             //Added OrderDetail To the Observable list
             obOrderDetailTmList.add(orderDetail);
@@ -217,7 +239,7 @@ public class OrderFormController {
 
         }
         lblTotal.setText(String.valueOf(getAllTotalCost()));
-
+        clearText();
 
     }
 
@@ -267,12 +289,41 @@ public class OrderFormController {
 
     private boolean saveOrder(String orderId, LocalDate orderDate, String customerId, List<OrderDetailDTO> orderDetails){
         try {
+            cmbCusId.setValue(null);
+            txtCusName.clear();
+            txtAddress.clear();
+            clearText();
             return placeOrderBO.purchaseOrder(new OrderDTO(orderId, orderDate, customerId, orderDetails));
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         return false;
+    }
+
+    private void clearText(){
+
+        cmbItemCode.setValue(null);
+
+        txtItemDescription.clear();
+        txtUnitPrice.clear();
+        txtQtyOnHand.clear();
+        txtDiscount.clear();
+        txtQty.clear();
+    }
+
+    public void textFieldValidationOnAction(KeyEvent keyEvent) {
+        Object response = ValidationUtil.validateJFXTextField(ord, btnAddToCart);
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            if (response instanceof JFXTextField) {
+                JFXTextField errorText = (JFXTextField) response;
+                errorText.requestFocus();
+            } else if (response instanceof Boolean) {
+
+            }
+
+        }
     }
 }

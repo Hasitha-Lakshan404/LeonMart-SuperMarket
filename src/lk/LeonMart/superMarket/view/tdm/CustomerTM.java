@@ -8,7 +8,9 @@
 package lk.LeonMart.superMarket.view.tdm;
 
 
-public class CustomerTM implements Comparable<CustomerTM>{
+import java.time.LocalDate;
+
+public class CustomerTM implements Comparable<CustomerTM> {
 
     private String cusId;
     private String cusTitle;
@@ -17,6 +19,9 @@ public class CustomerTM implements Comparable<CustomerTM>{
     private String city;
     private String province;
     private String postalCode;
+
+
+
 
     public CustomerTM() {
 

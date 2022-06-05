@@ -57,14 +57,14 @@
             <Font name="Book Antiqua" size="22.0" />
          </font>
       </Label>
-      <Label layoutX="1167.0" layoutY="17.0" prefHeight="28.0" prefWidth="93.0" text="00:00:00">
+      <Label fx:id="lblTime" layoutX="1167.0" layoutY="16.0" prefHeight="28.0" prefWidth="138.0" text="00:00:00">
          <font>
-            <Font name="Book Antiqua" size="16.0" />
+            <Font name="Book Antiqua" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="1415.0" layoutY="19.0" prefHeight="28.0" prefWidth="215.0" text="21/21/2020">
+      <Label fx:id="lblDate" layoutX="1415.0" layoutY="17.0" prefHeight="28.0" prefWidth="248.0" text="21/21/2020">
          <font>
-            <Font name="Book Antiqua" size="16.0" />
+            <Font name="Book Antiqua" size="18.0" />
          </font>
       </Label>
       <AnchorPane fx:id="apnMainPane" layoutX="59.0" layoutY="63.0" prefHeight="968.0" prefWidth="1838.0" style="-fx-background-color: #e1e1e1;" />
